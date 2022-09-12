@@ -1,14 +1,32 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-// import HelloWorld from "../components/HelloWorld";
+import MyMatches from "../pages/MyMatches";
 import MainComponent from "../components/MainComponent"
+import CreateMatch from "../pages/CreateMatch"
 import WagonWheelComponent from '../components/WagonWheelComponent'
+
 import AddTeamComponent from '../components/AddTeamComponent'
+
+import LoginPage from "@/components/LoginPage"
+import RegisterPage from "@/components/RegisterPage"
+import AddPlayers from "@/components/AddPlayers"
+
 Vue.use(VueRouter);
 const routes = [
+
     {path:'/',name:'Maincomponent',component:MainComponent},
+
     {path:'/wagon',name:'WagonWheelComponent',component:WagonWheelComponent},
-    {path:'/createMatch/AddTeam',name:'AddTeamComponent',component:AddTeamComponent}
+    {path:'/createMatch/AddTeam',name:'AddTeamComponent',component:AddTeamComponent},
+
+    {path:'/create',name:'CreateMatch',component:CreateMatch},
+    {path:'/match',name:'MyMatches',component:MyMatches},
+    {path:'/',name:'login',component:LoginPage},
+    {path:'/register',name:'register',component:RegisterPage},
+    {path:'/main',name:'Maincomponent',component:MainComponent},
+   
+    {path:'/players',name:'AddPlayers',component:AddPlayers}
+
 ]
 const router = new VueRouter({
     mode: "history",
