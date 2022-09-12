@@ -21,8 +21,7 @@ export default {
     width:100%;
     height:60px;
    background: #b90e0a;
-   display: -webkit-box;
-   padding-left:10px;
+   z-index:99999;
 }
 .logo a{
   margin-left:0;

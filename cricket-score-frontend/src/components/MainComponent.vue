@@ -76,10 +76,10 @@
     tag="article"
     class="mb-2"
   >
-    <router-link to=''><b-avatar style="cursor:pointer;" variant="info" src="https://cdn.vectorstock.com/i/1000x1000/73/59/angry-bull-logo-vector-41117359.webp"></b-avatar></router-link>&nbsp;
-    <router-link to=''><b-avatar style="cursor:pointer;" variant="info" src="https://cdn.vectorstock.com/i/1000x1000/73/59/angry-bull-logo-vector-41117359.webp"></b-avatar></router-link>&nbsp;
-    <router-link to=''><b-avatar style="cursor:pointer;" variant="info" src="https://cdn.vectorstock.com/i/1000x1000/73/59/angry-bull-logo-vector-41117359.webp"></b-avatar></router-link>&nbsp;
-     <router-link to=''><b-avatar style="border:0.5px solid black;cursor:pointer" variant="info" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Plus_symbol.svg/1200px-Plus_symbol.svg.png"></b-avatar></router-link>&nbsp;
+  <div class="align-myTeams" v-for="i in teams" :key="i">
+    <router-link to=''><b-avatar style="cursor:pointer;" variant="info" :src="i.img"></b-avatar></router-link><br>{{i.name}}&nbsp;
+    </div>
+     <router-link to=''><b-avatar style="border:0.5px solid black;cursor:pointer" variant="info" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Plus_symbol.svg/1200px-Plus_symbol.svg.png"></b-avatar></router-link><br>Add&nbsp;
   </b-card>
 </div>
   </div>
@@ -96,14 +96,20 @@
 
 <script>
 import createMatchModal from '../components/CreateMatchModal.vue';
+import {mapGetters} from 'vuex';
 export default {
   name:"MainComponent",
     data() {
       return {
         slide: 0,
         sliding: null,
-        show:true
+        show:true,
+        teams:this.$store.state.MyTeams.teams
       }
+    },
+    mounted()
+    {
+     console.log(this.teams)
     },
     components:
     {
@@ -122,6 +128,12 @@ export default {
          console.log(this.show);
       }
     },
+    computed:
+    {
+      ...mapGetters({
+          teams:'getTeams'
+      })
+    }
   }
 </script>
 
@@ -155,7 +167,7 @@ h3{
 
 }
 .my-teams{
-  padding-top:2%;
+  padding-top:4%;
   float:right;
 margin-top:200px;
   width:30vw;
@@ -179,5 +191,8 @@ margin-top:200px;
     display: table;
       padding-right: 5% ;
       margin-top: -2%;
+  }
+  .align-myTeams{
+    display: inline-grid;
   }
 </style>
