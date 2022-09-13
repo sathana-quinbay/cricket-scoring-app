@@ -57,10 +57,23 @@
         <b-col>4.6</b-col>
       </b-row>
       <hr class="table--hr" />
-      <div class="scoringCard">
-        <table class="table-style" v-show="additionalDialog">
+      <b-container class="bgColor"  fluid v-show="additionalDialog==3">
+ <img
+      src="../assets/wheel.jpg"
+      width="300"
+      height="300"
+      usemap="#image-map"
+      alt="wagon"
+      id="image"
+    
+      srcset=""
+    />
+
+         </b-container>
+      <div v-show="additionalDialog!=3"  class="scoringCard">
+        <table class="table-style" v-show="additionalDialog==1">
           <tr>
-            <td><button class="scorebtn" @click="add('1')">1</button></td>
+            <td><button class="scorebtn" @click="addScore('1')">1</button></td>
             <td><button class="scorebtn" @click="addScore('2')">2</button></td>
             <td><button class="scorebtn" @click="addScore('3')">3</button></td>
             <td><button class="scorebtn" @click="addScore('4')">4</button></td>
@@ -81,13 +94,14 @@
             <td>Out</td>
           </tr>
         </table>
-        <b-container fluid v-show="!additionalDialog" class="wide-style ">
+         
+        <b-container fluid v-show="additionalDialog==2" class="wide-style ">
             <b-row>
                 <h5>{{this.category}}</h5>
                 <button class="wide-header" @click="additionalDialog=true">X</button>
             </b-row>
             <b-row>
-             <button v-for="(key,index) in buttonList" :key="index" class="widebtn" @click="addValue('key.value')">{{key.name}}</button>
+             <button v-for="(key,index) in buttonList" :key="index" class="widebtn" @click="addValue(key)">{{key.name}}</button>
             
             <!-- <td><button class="scorebtn" @click="addScore('1')">Wd</button></td>
             <td><button class="scorebtn" @click="addScore('2')">2+ Wd</button></td>
@@ -250,22 +264,25 @@ export default {
             value:"5"
            },
         ],
-        additionalDialog:true,
+        additionalDialog:1,
         category:""
     };
   },
   methods: {
     addScoreList(value,category){
         // console.log(value)
-        this.additionalDialog=false
+        this.additionalDialog=2
         this.buttonList=value;
         this.category=category
+
     },
     addValue(value){
+      if(value.key)
         console.log(value)
-        this.additionalDialog=true;
+        this.additionalDialog=1;
     },
     addScore(value){
+      this.additionalDialog=3;
         console.log(value);
     }
   },
@@ -301,6 +318,9 @@ td {
     background-color: #ff9900;
     height: 150px;
     padding-top: 2%;
+}
+.bgColor{
+  background: rgb(247, 247, 247);
 }
 .table-style{
     width: 90%;
