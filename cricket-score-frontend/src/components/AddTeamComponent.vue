@@ -22,14 +22,12 @@
   <input v-show="dispSearch" style="width:250px;text-align:center;" type="search" placeholder="Search by Team Name" v-model="searchKey" centered>
    <ul v-for="i in team" :key="i">
     <div class="align-search-teams">
-        <li @click="dispSearch=false"><b-avatar style="cursor:pointer;" variant="info" :src="i.img" size="3.5rem"></b-avatar><br>{{i.name}}</li>
+       <div class="selected-team"><li @click="dispSearch=false"><b-avatar style="cursor:pointer;" variant="info" :src="i.img" size="3.5rem"></b-avatar><br>{{i.name}}</li></div><div @click="remove()" v-show="!dispSearch" class="x">x</div>
   </div>
   </ul>
+   <br><p v-show="!dispSearch" class="ui-close">( click 'x' to remove selection. )</p>
   <p v-show="resultsNone">No Matches Found.</p>
   </div>
-  <div @click="remove()" v-show="!dispSearch" class="remove-item">
-  <img  src="../assets/trash.svg" height="30px" width="30px"><br>
-  Remove Item</div>
 </center>
 <div v-show="dispSearch">
           Option 2  <br><br>
@@ -164,5 +162,23 @@ li :hover{
     float:right;
     margin-top:-100px;
     font-size:75%;
+}
+.x{
+    font-size:15px;
+    background:lightgrey;
+    border-radius: 40px;
+    /* padding:1%; */
+    height:20px;
+    cursor:pointer;
+}
+.selected-team
+{
+    background: lightgrey;
+    padding:5%;
+    border-radius:50%;
+}
+.ui-close{
+    font-size:70%;
+    text-align: center;
 }
 </style>
