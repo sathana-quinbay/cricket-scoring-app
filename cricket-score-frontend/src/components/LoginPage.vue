@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <b-container style="margin-top:5%">
+  <div class="loginComponent">
+    <b-container>
       <b-row>
         <b-col class="align-div" cols="12" lg="6" sm="12" md="12">
           <img class="ball-image" src="https://media.istockphoto.com/videos/animated-cricket-ball-flies-quickly-against-background-of-stands-with-video-id1317608556?s=640x640" alt="ball">
@@ -29,6 +29,17 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.loginComponent {
+    /* top:40%;
+
+    left:20%;
+
+    position: absolute; */
+  padding-top: 10%;
+  padding-left:10% ;
+ /* transform:translate(-50%,-50%); */
+
 }
 .input-mob{
   margin-top: 5%;

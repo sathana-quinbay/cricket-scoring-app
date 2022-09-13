@@ -16,22 +16,26 @@ import ScorecardComponent from "@/components/ScorecardComponent"
 import StatsComponent from "@/components/StatsComponent"
 import BallsComponent from "@/components/BallsComponent"
 import InfoComponent from "@/components/InfoComponent"
+import NavBarComponent from '@/components/NavBarComponent.vue'
 Vue.use(VueRouter);
 const routes = [
+  {path:'/login',name:'login',component:LoginPage},
+  {path:'/register',name:'register',component:RegisterPage},
+  {path:'/',name:'NavBarComponent',component:NavBarComponent,
+  children:[
 
-    {path:'/',name:'Maincomponent',component:MainComponent},
+    
 
-    {path:'/wagon',name:'WagonWheelComponent',component:WagonWheelComponent},
-    {path:'/createMatch/AddTeam',name:'AddTeamComponent',component:AddTeamComponent},
+    {path:'wagon',name:'WagonWheelComponent',component:WagonWheelComponent},
+    {path:'createMatch/AddTeam',name:'AddTeamComponent',component:AddTeamComponent},
 
-    {path:'/create',name:'CreateMatch',component:CreateMatch},
-    {path:'/match',name:'MyMatches',component:MyMatches},
-    {path:'/login',name:'login',component:LoginPage},
-    {path:'/register',name:'register',component:RegisterPage},
-    {path:'/main',name:'Maincomponent',component:MainComponent},
+    {path:'create',name:'CreateMatch',component:CreateMatch},
+    {path:'match',name:'MyMatches',component:MyMatches},
+    
+    {path:'',name:'Maincomponent',component:MainComponent},
 
     {path:'/players',name:'AddPlayers',component:AddPlayers},
-    {path:'/matchcentre',name:'MatchCentre',component:MatchCentre,
+    {path:'matchcentre',name:'MatchCentre',component:MatchCentre,
     children:[
       {path:'summary',name:'summary',component:SummaryComponent},
       {path:'scorecard',name:'register',component:ScorecardComponent},
@@ -42,6 +46,8 @@ const routes = [
   
   
   }
+  ]},
+   
 
 ]
 const router = new VueRouter({
