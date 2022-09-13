@@ -84,13 +84,13 @@
                         <button class="scorebtn">Bye</button>
                     </td>
                     <td>
-                        <button class="scorebtn">3</button>
+                        <button class="scorebtn">Wide</button>
                     </td>
                     <td>
-                        <button class="scorebtn">4</button>
+                        <button class="scorebtn">NB</button>
                     </td>
                     <td>
-                        <button class="scorebtn">6</button>
+                        <button class="scorebtn">Dot</button>
                     </td>
                 </tr>
             </table>
