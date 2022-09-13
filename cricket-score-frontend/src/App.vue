@@ -1,22 +1,29 @@
 <template>
   <div id="app">
-     <NavBarComponent/>
+    
    <router-view/>
   </div>
 </template>
 
 <script>
-import NavBarComponent from './components/NavBarComponent.vue'
+
 export default {
   name: 'App',
-  components: {
-   
-    NavBarComponent
-  }
 }
 </script>
 
 <style>
+*{
+
+  margin: 0;
+
+  font-family: nunito,sans-serif;
+
+  padding: 0;
+
+}
+
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -28,5 +35,6 @@ export default {
 }
 html,#app{
   height: 100vh;
+  margin: 0;
 }
 </style>

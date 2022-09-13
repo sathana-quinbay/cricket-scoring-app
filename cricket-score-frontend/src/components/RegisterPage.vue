@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-container >
+        <b-container class="mainContainer" >
             <b-row>
             <b-col class="align-div" cols="12" lg="6" sm="12" md="12"> 
             <b-card style="min-height: 300px;">
@@ -56,6 +56,10 @@ input::-webkit-inner-spin-button {
 .reg-btn{
     width: 40%;
     margin-bottom: 5%;
+}
+.mainContainer
+{
+    padding-top: 10%;
 }
 </style>
 

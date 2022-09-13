@@ -1,21 +1,24 @@
 <template>
    <div>
-    <!-- <b-button @click="show=true" variant="primary">Show Modal</b-button> -->
-
+   
     <b-modal
-      id="modalHeader"
-       size="md"
-       centered
+    size="md"
+     centered
+     hide-footer
       v-model="show"
+      title="Select Team"  
+      no-close-on-backdrop
       header-bg-variant="danger"
       header-text-variant="light"
-      body-bg-variant="light"
-     
+      
       body-text-variant="bodyTextVariant"
       footer-bg-variant="footerBgVariant"
       footer-text-variant="footerTextVariant">
          <template #modal-header>
            <h5>Choose Team</h5>
+            <button @click="closeModal" class="closeButton">
+<b-icon-x-lg style="color:white"/>
+        </button>
         </template>
       <div class="align-team"> 
           
@@ -23,22 +26,20 @@
           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
            <center>
             <div style="padding-bottom:5px;">
-              <label for="">Search by Team Name</label>
-  <b-form-input class="formInput" v-show="dispSearch"  type="search" v-model="searchKey" centered/>
+  <b-form-input class="formInput" v-show="dispSearch"  type="search" placeholder="Search by Team Name" v-model="searchKey" centered />
    <ul v-for="i in team" :key="i">
     <div class="align-search-teams">
-        <li @click="dispSearch=false"><b-avatar style="cursor:pointer;" variant="info" :src="i.img" size="3.5rem"></b-avatar><br>{{i.name}}</li>
+       <div class="selected-team"><li @click="dispSearch=false"><b-avatar style="cursor:pointer;" variant="info" :src="i.img" size="3.5rem"></b-avatar><br>{{i.name}}</li></div><div @click="remove()" v-show="!dispSearch" class="x">x</div>
   </div>
   </ul>
+   <br><p v-show="!dispSearch" class="ui-close">( click 'x' to remove selection. )</p>
   <p v-show="resultsNone">No Matches Found.</p>
   </div>
-  <div @click="remove()" v-show="!dispSearch" class="remove-item">
-  <img  src="../assets/trash.svg" height="30px" width="30px"><br>
-  Remove Item</div>
 </center>
+
 <div v-show="dispSearch">
-          <p style="text-align:center">or</p>
-           <center><b-button class="dangerButton" style="width:200px;">Create New Team</b-button></center></div>
+        <p style="text-align:center">or</p>
+           <center><b-button variant="danger" style="width:200px;">Create New Team</b-button></center></div>
 </div>
 
           <!-- <b-button
@@ -59,14 +60,14 @@
             class="float-right"
             @click="closeModal"
           >
-            Save
+            Next
           </b-button>
           <b-button style="float:left;"
             variant="warning"
             size="sm"
             @click="closeModal"
           >
-            Close
+            Back
           </b-button>
         </div>
       </template>
@@ -131,13 +132,13 @@ export default {
         this.team=[];
         this.dispSearch=true;
        },
-       closeModal()
-       {
+      closeModal()
+      {
         this.show=false;
         this.$emit('closeModal')
-       }
-    },
+      }
     
+    },
     computed:
     {
       ...mapGetters({
@@ -148,10 +149,13 @@ export default {
 </script>
 
 <style scoped>
-.dangerButton,.dangerButton:focus,.dangerButton:hover{
-  color: white;
-  border: none;
-  background: #d9534f;
+.closeButton
+{
+    background: none;
+    border: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 input[type=search] {
     border: 0.01px solid black;
@@ -159,11 +163,22 @@ input[type=search] {
     border-radius:10px;
     outline:none;
 }
-.modal-body {
-    position: relative;
-    flex: 1 1 auto;
-    background: #d9534f;
-    padding: 0% !important;
+.formInput{
+    margin-top:0%;
+    padding-top:0%;
+    text-align: center;
+    border:none;
+    border-radius: 5px;
+    background: #f4f2f2;
+    border: 1px solid #f4f2f2;
+
+}
+
+.formInput:focus{
+    border: none;
+   box-shadow: none;
+    border: 1px solid yellowgreen;
+    border-color: black;
 }
 .align-team{
     display:list-item;
@@ -179,23 +194,6 @@ input[type=search] {
     margin-top: 2%;
 
 }
-.formInput{
-    margin-top:0%;
-    padding-top:0%;
-    border:none;
-    border-radius: 5px;
-    background: #f4f2f2;
-    border: 1px solid #f4f2f2;
-
-}
-
-
-.formInput:focus{
-    border: none;
-   box-shadow: none;
-    border: 1px solid yellowgreen;
-    border-color: black;
-}
 li :hover{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
@@ -203,5 +201,23 @@ li :hover{
     float:right;
     margin-top:-100px;
     font-size:75%;
+}
+.x{
+    font-size:15px;
+    background:lightgrey;
+    border-radius: 40px;
+    /* padding:1%; */
+    height:20px;
+    cursor:pointer;
+}
+.selected-team
+{
+    background: lightgrey;
+    padding:5%;
+    border-radius:50%;
+}
+.ui-close{
+    font-size:70%;
+    text-align: center;
 }
 </style>
