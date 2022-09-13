@@ -1,5 +1,6 @@
 <template>
   <div>
+    <AddTeamComponent v-if="showModal" @closeModal="closeModal"/>
     <b-container class="main-container">
          <h4 class="heading">Create Match</h4>
          <br>
@@ -10,7 +11,7 @@
               <div class="create-match">
                 <p>Select Team</p>
                 <div class="avatar-create">
-                <b-icon-plus class="h1"></b-icon-plus>
+                <b-icon-plus @click="shownModal" class="h1"></b-icon-plus>
                
               </div>
                <h6>TEAM A</h6>
@@ -18,7 +19,7 @@
                 <div class="create-match">
                     <p>Select Team</p>
                 <div class="avatar-create">
-                <b-icon-plus class="h1"></b-icon-plus>
+                <b-icon-plus @click="shownModal" class="h1"></b-icon-plus>
               </div>
               <h6>TEAM B</h6>
               </div>
@@ -62,12 +63,29 @@
   </div>
 </template>
 <script>
+import AddTeamComponent from "../components/AddTeamComponent"
 export default{
     name:"CreateMatch",
     data(){
         return {
             oversList:[10,20,30,40,50],
-            overs:10
+            overs:10,
+            showModal:false
+        }
+    },
+    components:{
+        AddTeamComponent,
+    },
+    methods:{
+        closeModal()
+        {
+            this.showModal=false
+
+        },
+        shownModal()
+        {
+            this.showModal=true
+
         }
     }
 }

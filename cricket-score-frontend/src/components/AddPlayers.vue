@@ -64,14 +64,7 @@ export default {
   .failed,.failed:hover,.failed:focus{
     background-color: grey;
   }
-  p:nth-child(2){
-    margin: 0;
-    font-style:italic;
-  }
-  p:nth-child(1){
-    margin: 0;
-    font-weight: bold;
-  }
+
   .input-name{
      border: none;
      border-radius: 0;

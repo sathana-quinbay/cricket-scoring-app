@@ -35,4 +35,7 @@ height: 100vh;
   margin-top: 60px;
   background: whitesmoke;
 }
+html,#app{
+  height: 100vh;
+}
 </style>

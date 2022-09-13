@@ -27,7 +27,7 @@
             variant="primary"
             size="sm"
             class="float-right"
-            @click="show=false"
+            @click="closeModal"
           >
             Close
           </b-button>
@@ -41,7 +41,7 @@
 export default {
     data() {
       return {
-        show: false,
+        show: true,
         variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
         headerBgVariant: 'dark',
         headerTextVariant: 'light',
@@ -59,6 +59,13 @@ export default {
         return {};
       },
     },
+    },
+    methods:{
+      closeModal()
+      {
+        this.show=false;
+        this.$emit('closeModal')
+      }
     }
 }
 </script>

@@ -1,25 +1,30 @@
 <template>
    <div>
-    <b-button @click="show=true" variant="primary">Show Modal</b-button>
+    <!-- <b-button @click="show=true" variant="primary">Show Modal</b-button> -->
 
     <b-modal
-    size="md"
-     centered
+      id="modalHeader"
+       size="md"
+       centered
       v-model="show"
-      title="Select Team"  
       header-bg-variant="danger"
       header-text-variant="light"
       body-bg-variant="light"
+     
       body-text-variant="bodyTextVariant"
       footer-bg-variant="footerBgVariant"
       footer-text-variant="footerTextVariant">
+         <template #modal-header>
+           <h5>Choose Team</h5>
+        </template>
       <div class="align-team"> 
-          <div v-show="dispSearch">Option 1</div>
+          
           <div v-show="!dispSearch">Selected Team</div>
           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
            <center>
             <div style="padding-bottom:5px;">
-  <input v-show="dispSearch" style="width:250px;text-align:center;" type="search" placeholder="Search by Team Name" v-model="searchKey" centered>
+              <label for="">Search by Team Name</label>
+  <b-form-input class="formInput" v-show="dispSearch"  type="search" v-model="searchKey" centered/>
    <ul v-for="i in team" :key="i">
     <div class="align-search-teams">
         <li @click="dispSearch=false"><b-avatar style="cursor:pointer;" variant="info" :src="i.img" size="3.5rem"></b-avatar><br>{{i.name}}</li>
@@ -32,8 +37,8 @@
   Remove Item</div>
 </center>
 <div v-show="dispSearch">
-          Option 2  <br><br>
-           <center><b-button variant="danger" style="width:200px;">Create New Team</b-button></center></div>
+          <p style="text-align:center">or</p>
+           <center><b-button class="dangerButton" style="width:200px;">Create New Team</b-button></center></div>
 </div>
 
           <!-- <b-button
@@ -52,16 +57,16 @@
             variant="dark"
             size="sm"
             class="float-right"
-            @click="show=false"
+            @click="closeModal"
           >
-            Next
+            Save
           </b-button>
           <b-button style="float:left;"
             variant="warning"
             size="sm"
-            @click="show=false"
+            @click="closeModal"
           >
-            Back
+            Close
           </b-button>
         </div>
       </template>
@@ -125,8 +130,14 @@ export default {
        {
         this.team=[];
         this.dispSearch=true;
+       },
+       closeModal()
+       {
+        this.show=false;
+        this.$emit('closeModal')
        }
     },
+    
     computed:
     {
       ...mapGetters({
@@ -137,11 +148,22 @@ export default {
 </script>
 
 <style scoped>
+.dangerButton,.dangerButton:focus,.dangerButton:hover{
+  color: white;
+  border: none;
+  background: #d9534f;
+}
 input[type=search] {
     border: 0.01px solid black;
     background: whitesmoke;
     border-radius:10px;
     outline:none;
+}
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    background: #d9534f;
+    padding: 0% !important;
 }
 .align-team{
     display:list-item;
@@ -156,6 +178,23 @@ input[type=search] {
     list-style-type: none ;
     margin-top: 2%;
 
+}
+.formInput{
+    margin-top:0%;
+    padding-top:0%;
+    border:none;
+    border-radius: 5px;
+    background: #f4f2f2;
+    border: 1px solid #f4f2f2;
+
+}
+
+
+.formInput:focus{
+    border: none;
+   box-shadow: none;
+    border: 1px solid yellowgreen;
+    border-color: black;
 }
 li :hover{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
