@@ -1,12 +1,13 @@
 <template>
   <div>
-    <b-container>
+    <b-container style="margin-top:5%">
       <b-row>
         <b-col class="align-div" cols="12" lg="6" sm="12" md="12">
           <img class="ball-image" src="https://media.istockphoto.com/videos/animated-cricket-ball-flies-quickly-against-background-of-stands-with-video-id1317608556?s=640x640" alt="ball">
         </b-col>
         <b-col class="align-div" cols="12" lg="4" sm="12" md="12">
           <b-card style=" height:100%;min-height: 300px;">
+            <b-card-title>Login</b-card-title>
             <b-form-input v-model="userPhoneNo" class="input-mob" aria-label="mobile number" type="number" placeholder="Mobile number"></b-form-input>
             <span v-if="checkPhoneNum" style="color: red"
             >Enter valid phone number</span
