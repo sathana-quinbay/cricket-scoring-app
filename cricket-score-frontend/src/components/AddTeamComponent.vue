@@ -1,6 +1,5 @@
 <template>
    <div>
-   
     <b-modal
     size="md"
      centered
@@ -268,3 +267,6 @@ li :hover{
     text-align: center;
 }
 </style>
+
+
+
