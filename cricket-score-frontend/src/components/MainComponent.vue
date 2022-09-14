@@ -76,10 +76,12 @@
     tag="article"
     class="mb-2"
   >
+  <div class="align-teams-line">
   <div class="align-myTeams" v-for="i in teams" :key="i">
     <router-link to=''><b-avatar style="cursor:pointer;" variant="info" :src="i.img"></b-avatar></router-link><br>{{i.name}}&nbsp;
     </div>
-     <router-link to=''><b-avatar style="border:0.5px solid black;cursor:pointer" variant="info" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Plus_symbol.svg/1200px-Plus_symbol.svg.png"></b-avatar></router-link><br>Add&nbsp;
+     <router-link to=''><b-avatar style="border:0.5px solid black;cursor:pointer" variant="info" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Plus_symbol.svg/1200px-Plus_symbol.svg.png"></b-avatar></router-link>&nbsp;
+  </div>
   </b-card>
 </div>
   </div>
@@ -139,6 +141,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.hello{
+    scroll-behavior: smooth;
+}
 h3{
   float:left;
   margin-left:5vw;
@@ -192,7 +197,35 @@ margin-top:200px;
       padding-right: 5% ;
       margin-top: -2%;
   }
-  .align-myTeams{
-    display: inline-grid;
+  .align-teams-line{
+    display: inline-flex;
+  }
+  @media screen and (max-width: 1000px)
+  {
+      .stats-flex{
+        padding-left:14%;
+      }
+  }
+  @media screen and (max-width: 700px)
+  {
+     .align-issue{
+      display: table-caption;
+     }
+     .slider{
+      margin-left:5%;
+      width:90vw;
+     }
+     .create-a-match{
+        margin-top:55vh;
+        width:60vw;
+        margin-left:20%;
+     }
+     .user-stats
+  {
+    display: none;
+  }
+    .my-teams{
+      display: none;
+    }
   }
 </style>
