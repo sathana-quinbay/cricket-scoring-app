@@ -1,5 +1,9 @@
 <template>
-    <h1>hello</h1>
+   <div>
+     <div v-for="match in matchList" :key="match.matchId">
+        <h1 @click="editMatch(match.matchId)">{{match.matchName}}</h1>
+    </div>
+   </div>
 </template>
 <script>
 import {mapGetters} from "vuex"
@@ -10,9 +14,15 @@ export default{
 
         }
     },
+    methods: {
+      editMatch(id)
+      {
+         this.$router.push({ path: `/edit/${id}` });
+      }
+    },
     computed: {
     ...mapGetters({
-      matchList: "getTeams",
+      matchList: "getMatchList",
     }),
    },
    created()

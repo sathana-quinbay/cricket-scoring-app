@@ -6,7 +6,7 @@
 
   </header>
   
-  <div style="padding-top:10%">
+  <div style="padding-top:5%">
     <router-view/>
   </div>
  </div>

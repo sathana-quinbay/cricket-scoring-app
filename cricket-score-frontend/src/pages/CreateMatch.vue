@@ -122,7 +122,7 @@
 <script>
 import AddTeamComponent from "../components/AddTeamComponent";
 import ChooseTossComponent from "../components/ChooseTossComponent.vue";
-import { createMatch } from "../Service/match.service";
+import { createMatch, getParticularMatch,editMatch } from "../Service/match.service";
 export default {
   name: "CreateMatch",
   data() {
@@ -132,6 +132,7 @@ export default {
       showModal: false,
       showTossModal: false,
       selectedTeam: null,
+      pageFor: null,
       teamA: null,
       teamB: null,
       errorMessage: null,
@@ -139,6 +140,30 @@ export default {
       time: "",
       date: "",
     };
+  },
+  mounted() {
+    if (this.$route.fullPath != "/create") {
+      var matchId = this.$route?.params?.id;
+      if (matchId != undefined) {
+        this.pageFor = "edit";
+        getParticularMatch({
+          success: (response) => {
+            console.log(response);
+            this.location = response.matchLocation;
+            (this.overs = response.overs), (this.date = response.matchDate);
+            this.time = response.matchTime;
+            this.teamA=response.team1
+            this.teamB=response.team2
+          },
+          error: (err) => {
+            console.log(err);
+          },
+          payload: matchId,
+        });
+      }
+    } else {
+      this.pageFor = "create";
+    }
   },
   components: {
     AddTeamComponent,
@@ -171,15 +196,31 @@ export default {
           team2Id: this.teamB?.teamid,
           userid: userId,
         };
-        createMatch({
-          success: (response) => {
-            console.log(response);
-          },
-          error: (e) => {
-            console.log(e);
-          },
-          payload: payload,
-        });
+        if (this.pageFor == "create") {
+          createMatch({
+            success: (response) => {
+              console.log(response);
+            },
+            error: (e) => {
+              console.log(e);
+            },
+            payload: payload,
+          });
+        }
+        else
+        {
+            editMatch({
+            success: (response) => {
+              console.log(response);
+            },
+            error: (e) => {
+              console.log(e);
+            },
+            payload: payload,
+          });
+
+        }
+
         console.log(payload);
       }
     },
