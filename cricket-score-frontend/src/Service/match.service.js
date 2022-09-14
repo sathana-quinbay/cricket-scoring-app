@@ -12,8 +12,8 @@ export const createMatch = ({success,error,payload})=>{
 }
 export const editMatch = ({success,error,payload})=>{
    
-    const api=`http://10.30.1.86:8998/user/createMatch`
-    axios.post(api,payload)
+    const api=`http://10.30.1.86:8998/user/editMatch`
+    axios.put(api,payload)
     .then(response => {
         success && success(response.data)
     })
