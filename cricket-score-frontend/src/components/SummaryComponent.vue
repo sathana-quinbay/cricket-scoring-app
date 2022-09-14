@@ -101,13 +101,7 @@
                 <button class="wide-header" @click="additionalDialog=true">X</button>
             </b-row>
             <b-row>
-             <button v-for="(key,index) in buttonList" :key="index" class="widebtn" @click="addValue(key)">{{key.name}}</button>
-            
-            <!-- <td><button class="scorebtn" @click="addScore('1')">Wd</button></td>
-            <td><button class="scorebtn" @click="addScore('2')">2+ Wd</button></td>
-            <td><button class="scorebtn" @click="addScore('3')">3+ Wd</button></td>
-            <td><button class="scorebtn" @click="addScore('4')">4+ Wd</button></td>
-            <td><button class="scorebtn" @click="addScore('5')">5+ Wd</button></td> -->
+             <button v-for="(key,index) in buttonList" :key="index" class="widebtn" @click="addValue(key.value)">{{key.name}}</button>
           </b-row>
         </b-container>
       </div>
@@ -298,6 +292,7 @@ export default {
     addValue(value){
       if(value.key)
         console.log(value)
+         
         this.additionalDialog=1;
     },
     addScore(value){

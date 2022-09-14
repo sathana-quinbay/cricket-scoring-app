@@ -23,23 +23,19 @@ export default{
                 time:"10:03 AM",
                 status:"live",
             }
-
         ]
-
     },
     getters:{
         getMatchList(state)
         {
             return state.matchList;
         }
-
     },
     mutations:{
         setMatch(state,value)
         {
             state.matchList=value
         }
-
     },
     actions:{
        
@@ -52,7 +48,7 @@ export default{
                 this.commit("setMatch",response)
                 },
                 error:(e)=>{
-console.log(e);
+                   console.log(e);
                 }
             }
             )
