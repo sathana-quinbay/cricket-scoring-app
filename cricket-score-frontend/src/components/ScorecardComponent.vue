@@ -1,7 +1,40 @@
 <template>
-  <div>
-    <div v-if="!items.length" class="match-not-started">
-      <center>Match Not Started Yet.</center>
+
+   <div>
+  <div v-if="!items.length" class="match-not-started"><center>Match Not Started Yet.</center></div>
+  <div v-if="items.length">
+  <b-card title="Card Title" no-body>
+    <b-card-header v-show="teamA" header-tag="nav">
+      <b-nav card-header pills>
+        <b-nav-item style="width:50%;font-weight:600;" active>Team A</b-nav-item>
+        <b-nav-item @click="teamBc()" style="width:48%;font-weight:600;">Team B</b-nav-item>
+      </b-nav>
+    </b-card-header>
+    <b-card-header v-show="teamB" header-tag="nav">
+      <b-nav card-header pills>
+        <b-nav-item @click="teamAc()" style="width:48%;font-weight:600;">Team A</b-nav-item>
+        <b-nav-item style="width:50%;font-weight:600;" active>Team B</b-nav-item>
+      </b-nav>
+    </b-card-header>
+    <b-table class="score-table" :items="items" :fields="fields" responsive>
+        <!-- <template #cell(SR)>
+           <p id="Sr"></p>
+        </template>     -->  
+    </b-table>
+    <div class="align-outside-comp">    
+    <div class="align-score">
+       <div style="display:flex;"><b style="padding-right:26%;">Extras</b>{{extras}}</div>
+       <div style="display:flex;color:#319da0;"><b style="padding-right:30%;">Total</b>&nbsp;<b>{{total}}/{{wickets}}</b></div></div>
+   <div class="align-Overs">
+       <div style="display:flex;"><b style="padding-right:49%;">Overs</b>{{Overs}}</div>
+       <div style="display:flex;"><b style="padding-right:20%;"><div style="display:flex;"><div>Run</div>&nbsp;<div>Rate</div></div></b>{{RunRate}}</div></div>
+  </div>
+    <div>
+
+         <b-table class="score-table" :items="bowlers" :fields="bowlerHeadings" responsive>
+    </b-table>
+
+
     </div>
     <div v-if="items.length">
       <b-card title="Card Title" no-body>

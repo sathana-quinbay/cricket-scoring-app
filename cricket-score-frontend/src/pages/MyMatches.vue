@@ -10,11 +10,16 @@ export default{
 
         }
     },
-    computed:{
-        ... mapGetters({
-            matchList:"getMatchList"
-        })
-    },
+    computed: {
+    ...mapGetters({
+      matchList: "getTeams",
+    }),
+   },
+   created()
+   {
+    console.log("inside ciewe")
+     this.$store.dispatch("GET_MATCH_LIST");
+   },
     mounted()
     {
         console.log(this.matchList)
