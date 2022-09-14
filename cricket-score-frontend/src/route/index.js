@@ -23,18 +23,12 @@ const routes = [
   {path:'/register',name:'register',component:RegisterPage},
   {path:'/',name:'NavBarComponent',component:NavBarComponent,
   children:[
-
-    
-
     {path:'wagon',name:'WagonWheelComponent',component:WagonWheelComponent},
     {path:'createMatch/AddTeam',name:'AddTeamComponent',component:AddTeamComponent},
-
     {path:'create',name:'CreateMatch',component:CreateMatch},
     {path:'match',name:'MyMatches',component:MyMatches},
-    
-    {path:'',name:'Maincomponent',component:MainComponent},
-
-    {path:'/players',name:'AddPlayers',component:AddPlayers},
+    {path:'home',name:'Maincomponent',component:MainComponent},
+    {path:'players',name:'AddPlayers',component:AddPlayers},
     {path:'matchcentre',name:'MatchCentre',component:MatchCentre,
     children:[
       {path:'summary',name:'summary',component:SummaryComponent},
@@ -43,8 +37,6 @@ const routes = [
       {path:'balls',name:'balls',component:BallsComponent},
       {path:'info',name:'info',component:InfoComponent},
     ]
-  
-  
   }
   ]},
    

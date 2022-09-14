@@ -87,6 +87,12 @@ export default {
           UserLogin({
             success:(response) => {
                console.log(response)
+               localStorage.setItem("userid",response.userid);
+               localStorage.setItem("username",response.username);
+               if(response.userid){
+                   this.$router.push({path:"/home"})
+               }
+
             },
             error:(e) =>{
                console.log(e);

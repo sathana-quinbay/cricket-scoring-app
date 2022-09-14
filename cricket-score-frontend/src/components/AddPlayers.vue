@@ -15,15 +15,14 @@
                     <div>
                     <p>{{player.name}} - {{player.id}}</p>
                 </div>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <!-- <div class="d-flex justify-content-between align-items-center">
                     <b-col lg="4" class="pb-2"><b-button :class="player.status=='playing'?'success':'failed' " size="sm">Playing</b-button></b-col>
                     <b-col lg="4" class="pb-2"><b-button :class="player.status!='playing'?'success':'failed' " size="sm">Bench</b-button></b-col>
-                </div>
+                </div> -->
                 </div>
                 <hr class="table--hr"/>
             </b-col>
-          </b-row>
-       
+          </b-row> 
         </b-container>
     </div>
 </template>

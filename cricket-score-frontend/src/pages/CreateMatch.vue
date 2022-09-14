@@ -4,7 +4,6 @@
       <ChooseTossComponent v-if="showTossModal" @closeTossModal="closeTossModal"/>
     <b-container class="main-container">
          <h4 class="heading">Create Match</h4>
-         <br>
       <b-row class="card">
         <b-col cols="12" lg="12">
          
@@ -12,8 +11,7 @@
               <div class="create-match">
                 <p>Select Team</p>
                 <div class="avatar-create">
-                <b-icon-plus @click="shownModal" class="h1"></b-icon-plus>
-               
+                <b-icon-plus @click="shownModal" class="h1"></b-icon-plus> 
               </div>
                <h6>TEAM A</h6>
               </div>
@@ -24,7 +22,6 @@
               </div>
               <h6>TEAM B</h6>
               </div>
-              
           </div>
           <div class="match-form">
                 <b-row>
@@ -33,19 +30,16 @@
                         <b-form-input class="formInput" type="text"></b-form-input>
                     </b-col>
                      <b-col cols="12" lg="6" md="12" sm="12">
-                     
                           <label for=""> <b-icon-mask /> <p>Overs</p></label>
                         <b-form-select v-model="overs" :options="oversList" class="formInput" type="text"></b-form-select>
                     </b-col>
                 </b-row>
                 <b-row class="mt-3">
-                     <b-col cols="12" lg="6" md="12" sm="12">
-                      
+                     <b-col cols="12" lg="6" md="12" sm="12"> 
                           <label for=""> <b-icon-calendar  /> <p>Date</p></label>
                         <b-form-input class="formInput" type="date"></b-form-input>
                     </b-col>
                      <b-col cols="12" lg="6" md="12" sm="12">
-                       
                           <label for=""> <b-icon-clock /> <p>Time</p></label>
                         <b-form-input class="formInput" type="time"></b-form-input>
                     </b-col>
@@ -55,7 +49,6 @@
                          <button class="startMatch" @click="showTossModal=true">Start Match</button>
                        </div>
                     </b-col>
-
                 </b-row>
               </div>
         </b-col>
@@ -88,12 +81,10 @@ export default{
         closeModal()
         {
             this.showModal=false
-
         },
         shownModal()
         {
             this.showModal=true
-
         }
     }
 }
@@ -103,7 +94,7 @@ export default{
 {
     margin-top: 5%;
     display: flex;
-   justify-content: space-evenly;
+    justify-content: space-evenly;
 }
 
 .Submit button{
@@ -119,19 +110,18 @@ export default{
     border-radius:10px;
     cursor: pointer;
     padding: 10px 16px;
-  
     user-select: none;
     background-image: none;
     border: 1px solid transparent;
 }
 .startMatch{
-        color: #fff;
+    color: #fff;
     background-color: #d9534f;
     border-color: #d43f3a;
 }
 .saveButton
 {
-        color: #fff;
+    color: #fff;
     background-color: #5cb85c;
     border-color: #4cae4c;
 }
@@ -145,8 +135,6 @@ export default{
     .Submit button{
         min-width: 100px;
     }
-
-    
 }
 @media screen and (max-width:300px) {
     .Submit {
@@ -156,8 +144,6 @@ export default{
     .Submit button{
         margin-top:3%;
     }
-    
-    
 }
 label{
     float: left;
@@ -177,10 +163,7 @@ label p{
 }
 .main-container{
     display: block;
-   
-
     padding-top: 5%;
-
 }
 .formInput{
     margin-top:0%;
@@ -208,8 +191,8 @@ label p{
 }
 .avatar-div
 {
-    display: flex;
-   justify-content: space-around;
+   display: flex;
+   justify-content:space-around;
 }
 .create-match h6{
     margin-top:10%;

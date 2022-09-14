@@ -1,16 +1,16 @@
 <template>
   <div>
     <div>
-      <h4>India</h4>
-      <p>1st Innings</p>
-      <h1 style="color: #319da0">92-7</h1>
+      <h4>{{TeamName}}</h4>
+      <p>{{Innings}}</p>
+      <h1 style="color: #319da0">{{score}}-{{wickets}}</h1>
       <hr class="table--hr" />
     </div>
     <div>
       <b-row style="font-weight: bold">
-        <b-col>Extras - 0</b-col>
-        <b-col>Overs - 2/20</b-col>
-        <b-col>CRR - 5.6</b-col>
+        <b-col>Extras - {{extras}}</b-col>
+        <b-col>Overs - {{overs}}/{{totalovers}}</b-col>
+        <b-col>CRR - {{cur_run_rate}}</b-col>
       </b-row>
       <b-row style="margin-bottom: 2%; font-weight: bold">
         <b-col>Partnership - 50(35)</b-col>
@@ -24,12 +24,12 @@
         <b-col>SR</b-col>
       </b-row>
       <b-row>
-        <b-col>Kishore</b-col>
-        <b-col>25</b-col>
-        <b-col>12</b-col>
-        <b-col>2</b-col>
-        <b-col>1</b-col>
-        <b-col>208.33</b-col>
+        <b-col>{{batsman1[0].b_name}}</b-col>
+        <b-col>{{batsman1[0].runs}}</b-col>
+        <b-col>{{batsman1[0].balls}}</b-col>
+        <b-col>{{batsman1[0].four}}</b-col>
+        <b-col>{{batsman1[0].six}}</b-col>
+        <b-col>{{batsman1[0].strike_rate}}</b-col>
       </b-row>
       <b-row style="margin-bottom: 2%">
         <b-col>Kishore</b-col>
@@ -106,6 +106,25 @@ export default {
   data() {
     return {
         buttonList:[],
+        TeamName:"India",
+        Innings:"1st Innings",
+        score:"92",
+        wickets:"5",
+        overs:4,
+        totalovers:20,
+        extras:5,
+        cur_run_rate:5.4,
+        batsman1:[
+            {
+                b_name:"Kishore",
+                runs:15,
+                balls:7,
+                four:2,
+                six:1,
+                strike_rate:208.23
+            }
+        ]
+    ,
         wicketList:[
            {
                 name:"Bowled",
@@ -301,6 +320,7 @@ td {
     background-color: #ff9900;
     height: 150px;
     padding-top: 2%;
+    position: relative;
 }
 .table-style{
     width: 90%;
@@ -333,14 +353,14 @@ button.widebtn {
     width: 100%;
     background-color: #ff9900;
     padding: 0 25%;
-    position: relative;
+   
 }
 .wide-header{
     float:right;
     position:absolute;
     background: none;
     border: none;
-    top: 0;
+    top: 2%;
     right: 1%;
 }
 </style>
