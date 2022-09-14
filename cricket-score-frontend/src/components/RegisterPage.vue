@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-container >
+        <b-container class="mainContainer" >
             <b-row>
             <b-col class="align-div" cols="12" lg="6" sm="12" md="12"> 
             <b-card style="min-height: 300px;">
@@ -20,7 +20,7 @@
             <b-form-input class="input-confirm-password" aria-label="password" type="password" placeholder="Confirm Password"></b-form-input>
 
             <b-button class="reg-btn" variant="outline-primary">Register</b-button><br>
-           <router-link to="/" >Already have an account? Sign In</router-link>
+           <router-link to="/login" >Already have an account? Sign In</router-link>
           </b-card>
           </b-col>
           <b-col class="align-div" cols="12" lg="6" sm="12" md="12">
@@ -56,6 +56,10 @@ input::-webkit-inner-spin-button {
 .reg-btn{
     width: 40%;
     margin-bottom: 5%;
+}
+.mainContainer
+{
+    padding-top: 10%;
 }
 </style>
 

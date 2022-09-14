@@ -1,10 +1,12 @@
 <template>
-  <header>
+ <div>
+   <header>
         <div class="logo">
-        
     </div> 
 
   </header>
+  <router-view/>
+ </div>
 </template>
 <script>
 export default {

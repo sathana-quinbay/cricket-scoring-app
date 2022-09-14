@@ -1,16 +1,19 @@
 <template>
-  <div>
+  <div style="margin-top:10%">
     <img
-      src="../assets/wagonwheel3.png"
+      src="../assets/wheel.jpg"
+      width="300"
+      height="300"
       usemap="#image-map"
       alt="wagon"
       id="image"
+       @click="noteCoords($event)"
       srcset=""
     />
 
-    <map name="image-map">
+    <!-- <map name="image-map">
       <area
-        @click="noteCoords($event)"
+       
         target=""
         alt=""
         title="1"
@@ -73,7 +76,7 @@
         coords="124,120,4,120,10,152,17,174,27,192,39,204"
         shape="poly"
       />
-    </map>
+    </map> -->
     <div>
       <canvas ref="canvas" id="drawing-pad" width="300" height="300" />
       <button @click="drawCanva">draw</button>
@@ -86,7 +89,8 @@
   width: 250px;
   border: 1px solid gray;
   background-repeat: no-repeat;
-  background-image: url("https://analyzesmart.files.wordpress.com/2015/03/wagonwheel3.png");
+  background-image: url("@/assets/wheel.jpg");
+  background-size: contain;
 }
 #image{
     cursor: url('https://png.pngtree.com/png-vector/20211006/ourmid/pngtree-cricket-ball-png-image_3971675.png'),auto;

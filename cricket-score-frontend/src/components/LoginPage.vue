@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="loginComponent">
     <b-container>
       <b-row>
         <b-col class="align-div" cols="12" lg="6" sm="12" md="12">
@@ -7,12 +7,13 @@
         </b-col>
         <b-col class="align-div" cols="12" lg="4" sm="12" md="12">
           <b-card style=" height:100%;min-height: 300px;">
-            <b-form-input v-model="userPhoneNo" class="input-mob" aria-label="mobile number" type="number" placeholder="Mobile number"></b-form-input>
+            <b-card-title>Login</b-card-title>
+            <b-form-input v-model="userLogin.phoneno" class="input-mob" aria-label="mobile number" type="number" placeholder="Mobile number"></b-form-input>
             <span v-if="checkPhoneNum" style="color: red"
             >Enter valid phone number</span
           >
-            <b-form-input class="input-password" aria-label="password" type="password" placeholder="Password"></b-form-input>
-            <b-button class="login-btn" variant="outline-primary">Login</b-button><br>
+            <b-form-input v-model="userLogin.password" class="input-password" aria-label="password" type="password" placeholder="Password"></b-form-input>
+            <b-button class="login-btn" variant="outline-primary" @click="login()">Login</b-button><br>
             <router-link to="/register"> Don't have an account? Sign Up</router-link>
 
           </b-card>
@@ -28,6 +29,17 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.loginComponent {
+    /* top:40%;
+
+    left:20%;
+
+    position: absolute; */
+  padding-top: 10%;
+  padding-left:10% ;
+ /* transform:translate(-50%,-50%); */
+
 }
 .input-mob{
   margin-top: 5%;
@@ -56,20 +68,41 @@ input::-webkit-inner-spin-button {
 </style>
 
 <script>
+import {UserLogin} from "@/Service/loginService"
 export default {
   data(){
     return{
+      userLogin:{
+        phoneno: null,
+        password:null,
+      },
       checkPhoneNum:false,
       userPhoneNo:"",
     }
   },
   methods:{
-     
+     login(){
+       if(this.userLogin.phoneno!=null && this.userLogin.password!=null)
+       {
+          UserLogin({
+            success:(response) => {
+               console.log(response)
+            },
+            error:(e) =>{
+               console.log(e);
+            },
+            payload:this.userLogin
+          })
+       }
+      //  else{
+           
+      //  }
+     }
   },
   watch: {
-    userPhoneNo() {
+    "userLogin.phoneno"() {
         console.log("inside watch");
-        (this.userPhoneNo.length==10)?(this.checkPhoneNum=false):(this.checkPhoneNum=true)
+        (this.userLogin.phoneno.length==10)?(this.checkPhoneNum=false):(this.checkPhoneNum=true)
     }
   }
 }

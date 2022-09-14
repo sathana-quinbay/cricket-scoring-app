@@ -1,5 +1,7 @@
 <template>
   <div>
+    <AddTeamComponent v-if="showModal" @closeModal="closeModal" :value="wideList"/>
+      <ChooseTossComponent v-if="showTossModal" @closeTossModal="closeTossModal"/>
     <b-container class="main-container">
          <h4 class="heading">Create Match</h4>
          <br>
@@ -10,7 +12,7 @@
               <div class="create-match">
                 <p>Select Team</p>
                 <div class="avatar-create">
-                <b-icon-plus class="h1"></b-icon-plus>
+                <b-icon-plus @click="shownModal" class="h1"></b-icon-plus>
                
               </div>
                <h6>TEAM A</h6>
@@ -18,7 +20,7 @@
                 <div class="create-match">
                     <p>Select Team</p>
                 <div class="avatar-create">
-                <b-icon-plus class="h1"></b-icon-plus>
+                <b-icon-plus @click="shownModal" class="h1"></b-icon-plus>
               </div>
               <h6>TEAM B</h6>
               </div>
@@ -50,7 +52,7 @@
                     <b-col>
                        <div class="Submit">
                          <button class="saveButton">Save</button>
-                         <button class="startMatch">Start Match</button>
+                         <button class="startMatch" @click="showTossModal=true">Start Match</button>
                        </div>
                     </b-col>
 
@@ -62,12 +64,36 @@
   </div>
 </template>
 <script>
+import AddTeamComponent from "../components/AddTeamComponent"
+import ChooseTossComponent from "../components/ChooseTossComponent.vue"
 export default{
     name:"CreateMatch",
     data(){
         return {
             oversList:[10,20,30,40,50],
-            overs:10
+            overs:10,
+            showModal:false,
+            showTossModal:false,
+        }
+    },
+    components:{
+        AddTeamComponent,
+        ChooseTossComponent
+    },
+    methods:{
+        closeTossModal()
+        {
+            this.showTossModal=false
+        },
+        closeModal()
+        {
+            this.showModal=false
+
+        },
+        shownModal()
+        {
+            this.showModal=true
+
         }
     }
 }
@@ -152,6 +178,9 @@ label p{
 .main-container{
     display: block;
    
+
+    padding-top: 5%;
+
 }
 .formInput{
     margin-top:0%;

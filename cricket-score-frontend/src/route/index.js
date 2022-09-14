@@ -10,31 +10,52 @@ import ScorecardComponent from '../components/ScorecardComponent'
 import LoginPage from "@/components/LoginPage"
 import RegisterPage from "@/components/RegisterPage"
 import AddPlayers from "@/components/AddPlayers"
+
 import LiveScoreNavTab from '@/components/LiveScoreNavTabs'
 import LoaderComponent from '@/components/LoaderComponent'
 import InfoComponent from '@/components/InfoComponent'
+
+import MatchCentre from "@/pages/MatchCentre"
+import SummaryComponent from "@/components/SummaryComponent"
+import ScorecardComponent from "@/components/ScorecardComponent"
+import StatsComponent from "@/components/StatsComponent"
+import BallsComponent from "@/components/BallsComponent"
+import InfoComponent from "@/components/InfoComponent"
+import NavBarComponent from '@/components/NavBarComponent.vue'
 Vue.use(VueRouter);
 const routes = [
+  {path:'/login',name:'login',component:LoginPage},
+  {path:'/register',name:'register',component:RegisterPage},
+  {path:'/',name:'NavBarComponent',component:NavBarComponent,
+  children:[
+    
+    
 
-    {path:'/',name:'Maincomponent',component:MainComponent},
+    {path:'wagon',name:'WagonWheelComponent',component:WagonWheelComponent},
+    {path:'createMatch/AddTeam',name:'AddTeamComponent',component:AddTeamComponent},
 
-    {path:'/wagon',name:'WagonWheelComponent',component:WagonWheelComponent},
-    {path:'/createMatch/AddTeam',name:'AddTeamComponent',component:AddTeamComponent},
+    {path:'create',name:'CreateMatch',component:CreateMatch},
+    {path:'match',name:'MyMatches',component:MyMatches},
+    
+    {path:'',name:'Maincomponent',component:MainComponent},
 
-    {path:'/create',name:'CreateMatch',component:CreateMatch},
-    {path:'/match',name:'MyMatches',component:MyMatches},
-    {path:'/login',name:'login',component:LoginPage},
-    {path:'/register',name:'register',component:RegisterPage},
-    {path:'/main',name:'Maincomponent',component:MainComponent},
-   
-    {path:'/players',name:'AddPlayers',component:AddPlayers},
-
-    {path:'/livescore',name:'LiveScoreNavTab',component:LiveScoreNavTab},
-    {path:'/scorecard',name:'scorecard',component:ScorecardComponent},
     {
-      path:'/loader',name:'LoaderComponent',component:LoaderComponent},
-      {
-        path:'/info',name:'InfoComponent',component:InfoComponent}
+      path:'loader',name:'LoaderComponent',component:LoaderComponent},
+
+    {path:'players',name:'AddPlayers',component:AddPlayers},
+    {path:'matchcentre',name:'MatchCentre',component:MatchCentre,
+    children:[
+      {path:'summary',name:'summary',component:SummaryComponent},
+      {path:'scorecard',name:'scorecard',component:ScorecardComponent},
+      {path:'stats',name:'stats',component:StatsComponent},
+      {path:'balls',name:'balls',component:BallsComponent},
+      {path:'info',name:'info',component:InfoComponent},
+    ]
+  
+  
+  }
+  ]},
+   
 
 ]
 const router = new VueRouter({
