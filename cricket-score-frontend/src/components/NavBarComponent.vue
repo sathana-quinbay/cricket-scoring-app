@@ -5,7 +5,10 @@
     </div> 
 
   </header>
-  <router-view/>
+  
+  <div style="padding-top:10%">
+    <router-view/>
+  </div>
  </div>
 </template>
 <script>

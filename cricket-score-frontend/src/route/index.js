@@ -11,11 +11,10 @@ import LoginPage from "@/components/LoginPage"
 import RegisterPage from "@/components/RegisterPage"
 import AddPlayers from "@/components/AddPlayers"
 import LoaderComponent from '@/components/LoaderComponent'
-import InfoComponent from '@/components/InfoComponent'
+
 
 import MatchCentre from "@/pages/MatchCentre"
 import SummaryComponent from "@/components/SummaryComponent"
-import ScorecardComponent from "@/components/ScorecardComponent"
 import StatsComponent from "@/components/StatsComponent"
 import BallsComponent from "@/components/BallsComponent"
 import InfoComponent from "@/components/InfoComponent"
