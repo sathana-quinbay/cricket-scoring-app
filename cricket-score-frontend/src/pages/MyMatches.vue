@@ -1,6 +1,7 @@
 <template>
+
     <div>
-       <div class="card" v-for="(key,index) in matchList" :key="index">
+       <div @click="editMatch(key.matchId)" class="card" v-for="(key,index) in matchList" :key="index">
        <h5> {{key.matchLocation}} </h5> 
        <p>{{new Date(key.matchDate).toDateString()}}</p>
        <button @click="deleteMatch" style="width:70px;height:30px">Delete</button>
@@ -8,6 +9,7 @@
        </div>
     </div>
     
+
 
 </template>
 <script>
@@ -18,6 +20,12 @@ export default{
         return {
            date:""
         }
+    },
+    methods: {
+      editMatch(id)
+      {
+         this.$router.push({ path: `/edit/${id}` });
+      }
     },
     computed: {
     ...mapGetters({

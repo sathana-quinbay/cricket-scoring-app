@@ -26,6 +26,7 @@ const routes = [
     {path:'wagon',name:'WagonWheelComponent',component:WagonWheelComponent},
     {path:'createMatch/AddTeam',name:'AddTeamComponent',component:AddTeamComponent},
     {path:'create',name:'CreateMatch',component:CreateMatch},
+    {path:'edit/:id',name:'EditMatch',component:CreateMatch},
     {path:'match',name:'MyMatches',component:MyMatches},
     {path:'',name:'Maincomponent',component:MainComponent},
     {path:'loader',name:'LoaderComponent',component:LoaderComponent},

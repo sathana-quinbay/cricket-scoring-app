@@ -20,9 +20,11 @@
       </div>
     </header>
 
-    <div style="margin-top: 8%">
+
+    <div style="margin-top: 5%">
       <router-view />
     </div>
+
   </div>
 
 </template>
