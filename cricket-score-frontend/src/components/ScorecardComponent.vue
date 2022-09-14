@@ -6,7 +6,7 @@
             <b-col>B</b-col>
             <b-col>4s</b-col>
             <b-col>6s</b-col>
-            <b-col>SR</b-col>
+            <b-col>SR</b-col>vfff g gbgt    ynynn y y y y y y y y y yh
         </b-row>
     </div>
     
