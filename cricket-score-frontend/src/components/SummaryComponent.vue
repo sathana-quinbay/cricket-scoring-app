@@ -1,9 +1,12 @@
 <template>
   <div>
     <div>
+
       <h4>India</h4>
       <p>1st Innings</p>
       <h1 style="color: #319da0">{{total}}-{{wickets}}</h1>
+
+
       <hr class="table--hr" />
     </div>
     <div>
@@ -57,6 +60,10 @@
         <b-col>4.6</b-col>
       </b-row>
       <hr class="table--hr" />
+<div>
+      <!-- <b-avatar text="BV"></b-avatar> -->
+      <b-avatar v-for="(data,index) in scores" :key="index" variant="secondary" :text="data+''"></b-avatar>
+    </div>
       <b-container class="bgColor"  fluid v-show="additionalDialog==3">
          <button class="wide-header" @click="additionalDialog=true">X</button>
  <img
@@ -66,7 +73,6 @@
       usemap="#image-map"
       alt="wagon"
       id="image"
-    
       srcset=""
     />
          </b-container>
@@ -108,12 +114,6 @@
             </b-row>
             <b-row>
              <button v-for="(key,index) in buttonList" :key="index" class="widebtn" @click="addValue(key)">{{key.name}}</button>
-            
-            <!-- <td><button class="scorebtn" @click="addScore('1')">Wd</button></td>
-            <td><button class="scorebtn" @click="addScore('2')">2+ Wd</button></td>
-            <td><button class="scorebtn" @click="addScore('3')">3+ Wd</button></td>
-            <td><button class="scorebtn" @click="addScore('4')">4+ Wd</button></td>
-            <td><button class="scorebtn" @click="addScore('5')">5+ Wd</button></td> -->
           </b-row>
         </b-container>
       </div>
@@ -149,6 +149,7 @@ export default {
     return {
         ballByBall:[],
         buttonList:[],
+
         c:0,
         wickets:0,
         total:0,
@@ -302,7 +303,10 @@ export default {
            },
         ],
         additionalDialog:1,
-        category:""
+        category:"",
+        scores:[],
+        count:1,
+        noOfBalls:0,
     };
   },
   created()
@@ -365,6 +369,7 @@ export default {
         this.category=category
 
     },
+
     addValue(value){
       if(!(value.value>='A'&&value.value<='Z'))
       {
@@ -500,6 +505,7 @@ td {
     background-color: #ff9900;
     height: 150px;
     padding-top: 2%;
+    position: relative;
 }
 .bgColor{
   background: rgb(247, 247, 247);
@@ -535,14 +541,14 @@ button.widebtn {
     width: 100%;
     background-color: #ff9900;
     padding: 0 25%;
-    position: relative;
+   
 }
 .wide-header{
     float:right;
     position:absolute;
     background: none;
     border: none;
-    top: 0;
+    top: 2%;
     right: 1%;
 }
 .ball-by-ball

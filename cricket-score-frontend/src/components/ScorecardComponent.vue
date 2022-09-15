@@ -29,8 +29,10 @@
        <div style="display:flex;"><b style="padding-right:20%;"><div style="display:flex;"><div>Run</div>&nbsp;<div>Rate</div></div></b>{{RunRate}}</div></div>
   </div>
     <div>
+
          <b-table class="score-table" :items="bowlers" :fields="bowlerHeadings" responsive>
     </b-table>
+
     </div>
     <div v-if="items.length>2" class="fall-align">
         <b>Fall of Wickets</b>

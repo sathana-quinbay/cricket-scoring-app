@@ -14,6 +14,7 @@
           >
             <b-form-input v-model="userLogin.password" class="input-password" aria-label="password" type="password" placeholder="Password"></b-form-input>
             <b-button class="login-btn" variant="outline-primary" @click="login()">Login</b-button><br>
+            <span v-show="checkLogin" style="color:red">{{message}}</span><br>
             <router-link to="/register"> Don't have an account? Sign Up</router-link>
 
           </b-card>
@@ -78,27 +79,30 @@ export default {
       },
       checkPhoneNum:false,
       userPhoneNo:"",
+      checkLogin:false,
+      message:""
     }
   },
   methods:{
      login(){
-       if(this.userLogin.phoneno!=null && this.userLogin.password!=null)
+       if(this.userLogin.phoneno!=null && this.checkPhoneNum==false && this.userLogin.password!=null)
        {
           UserLogin({
-            success:(data) => {
+            success:({data}) => {
                console.log(data)
                localStorage.setItem("userid",data.userid);
-
                localStorage.setItem("username",data.username);
-
                if(data.userid){
-
                    this.$router.push({path:"/create"})
-
                }
             },
             error:(e) =>{
                console.log(e);
+               if(e.response.status==409)
+               {
+                  this.checkLogin=true;
+                  this.message=e.response.data;
+               }
             },
             payload:this.userLogin
           })
