@@ -6,8 +6,10 @@
         <p> {{key.matchLocation}} </p> 
        <p>{{new Date(key.matchDate).toDateString()}} - {{key.matchTime}}</p>
        <p>Overs:{{key.overs}}</p>
-       <button @click="deleted(key.matchId)" class="deletefunc" style="">Delete</button>
-
+       <div style="display:flex">
+       <button @click="deleted(key.matchId)" class="delete-btn" style="">Delete</button>
+       <button @click="scoring()" class="scoring">View</button>
+       </div>
        </div>
     </div>
     
@@ -61,18 +63,36 @@ export default{
 
 <style scoped>
 .card{
-    width: 400px;
-    height: 300px;
-    background: rgb(230, 214, 214);
-    margin: 5%;
+    width: 300px;
+    height: 250px;
+    background: FFFFFF;
+    margin: 2% 7% 3% 5% ;
+    border-radius: 25px;
+    padding-top: 10px;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 .match-head{
     display: flex;
+    flex-wrap: wrap;
+    height: 700px;
+    overflow-y:auto ;
+    padding-top:10px ;
 }
-.deletefunc{
+.scoring
+  {
+      background: #5cb85c;
+      width:70px;
+      height:30px;
+      margin:8% 5%; 
+      border: none;
+      justify-content: center;
+      border-radius: 5px;
+      color: white;
+  }
+.delete-btn{
     width:70px;
     height:30px;
-    /* margin:5% 40%; */
+    margin:8% 17%; 
     justify-content: center;
     color: white;
     border: none;

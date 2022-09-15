@@ -1,49 +1,87 @@
 import {getAllMatches} from "../Service/match.service"
 export default{
     state:{
-        matchList:[{
-            // chooseTo : null,
-            
-            // matchDate : "2022-09-23"
-           
-            
-            // matchId
-            // : 
-            // "37"
-            // matchLocation
-            // : 
-            // "hjk"
-            // matchName
-            // : 
-            // "vhbjnkm vs fghjksd"
-            // matchStatus
-            // : 
-            // null
-            // matchTime
-            // : 
-            // "06:44"
-            // overs
-            // : 
-            // 10
-            // team1
-            // : 
-            // null
-            // team1Id
-            // : 
-            // 70
-            // team2
-            // : 
-            // null
-            // team2Id
-            // : 
-            // 72
-            // tossWonBy
-            // : 
-            // 0
-            // userid
-            // : 
-            // 57
-        }
+        matchList:[
+        //     {
+        //     chooseTo : null,
+        //     matchDate : "2022-09-23",
+        //     matchId:"37",
+        //     matchLocation:"hjk",
+        //     matchName:"vhbjnkm vs fghjksd",      
+        //     matchStatus:null,
+        //     matchTime:"06:44",
+        //     overs:10,
+        //     team1:null,
+        //     team1Id:70,
+        //     team2:null,
+        //     team2Id:72,
+        //     tossWonBy:"sda",
+        //     userid:57,
+        // },
+        // {
+        //     chooseTo : null,
+        //     matchDate : "2022-09-23",
+        //     matchId:"37",
+        //     matchLocation:"hjk",
+        //     matchName:"vhbjnkm vs fghjksd",      
+        //     matchStatus:null,
+        //     matchTime:"06:44",
+        //     overs:10,
+        //     team1:null,
+        //     team1Id:70,
+        //     team2:null,
+        //     team2Id:72,
+        //     tossWonBy:"sda",
+        //     userid:57,
+        // },
+        // {
+        //     chooseTo : null,
+        //     matchDate : "2022-09-23",
+        //     matchId:"37",
+        //     matchLocation:"hjk",
+        //     matchName:"vhbjnkm vs fghjksd",      
+        //     matchStatus:null,
+        //     matchTime:"06:44",
+        //     overs:10,
+        //     team1:null,
+        //     team1Id:70,
+        //     team2:null,
+        //     team2Id:72,
+        //     tossWonBy:"sda",
+        //     userid:57,
+        // },
+        // {
+        //     chooseTo : null,
+        //     matchDate : "2022-09-23",
+        //     matchId:"37",
+        //     matchLocation:"hjk",
+        //     matchName:"vhbjnkm vs fghjksd",      
+        //     matchStatus:null,
+        //     matchTime:"06:44",
+        //     overs:10,
+        //     team1:null,
+        //     team1Id:70,
+        //     team2:null,
+        //     team2Id:72,
+        //     tossWonBy:"sda",
+        //     userid:57,
+        // },
+        // {
+        //     chooseTo : null,
+        //     matchDate : "2022-09-23",
+        //     matchId:"37",
+        //     matchLocation:"hjk",
+        //     matchName:"vhbjnkm vs fghjksd",      
+        //     matchStatus:null,
+        //     matchTime:"06:44",
+        //     overs:10,
+        //     team1:null,
+        //     team1Id:70,
+        //     team2:null,
+        //     team2Id:72,
+        //     tossWonBy:"sda",
+        //     userid:57,
+        // },
         ]
     },
     getters:{

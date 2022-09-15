@@ -3,7 +3,7 @@
     <div>
       <h4>{{TeamName}}</h4>
       <p>{{Innings}}</p>
-      <h1 style="color: #319da0">{{score}}-{{wickets}}</h1>
+      <h1 style="color: #319da0">{{totalscore}}-{{wickets}}</h1>
       <hr class="table--hr" />
     </div>
     <div>
@@ -30,6 +30,7 @@
         <b-col>{{batsman1[0].four}}</b-col>
         <b-col>{{batsman1[0].six}}</b-col>
         <b-col>{{batsman1[0].strike_rate}}</b-col>
+        <!-- <b-col>{{scores}}</b-col> -->
       </b-row>
       <b-row style="margin-bottom: 2%">
         <b-col>Kishore</b-col>
@@ -57,6 +58,10 @@
         <b-col>4.6</b-col>
       </b-row>
       <hr class="table--hr" />
+<div>
+      <!-- <b-avatar text="BV"></b-avatar> -->
+      <b-avatar v-for="(data,index) in scores" :key="index" variant="secondary" :text="data+''"></b-avatar>
+    </div>
       <b-container class="bgColor"  fluid v-show="additionalDialog==3">
  <img
       src="../assets/wheel.jpg"
@@ -65,10 +70,8 @@
       usemap="#image-map"
       alt="wagon"
       id="image"
-    
       srcset=""
     />
-
          </b-container>
       <div v-show="additionalDialog!=3"  class="scoringCard">
         <table class="table-style" v-show="additionalDialog==1">
@@ -101,7 +104,7 @@
                 <button class="wide-header" @click="additionalDialog=true">X</button>
             </b-row>
             <b-row>
-             <button v-for="(key,index) in buttonList" :key="index" class="widebtn" @click="addValue(key.value)">{{key.name}}</button>
+             <button v-for="(key,index) in buttonList" :key="index" class="widebtn" @click="addValue(key)">{{key.name}}</button>
           </b-row>
         </b-container>
       </div>
@@ -116,17 +119,17 @@ export default {
         buttonList:[],
         TeamName:"India",
         Innings:"1st Innings",
-        score:"92",
+        totalscore:0,
         wickets:"5",
-        overs:4,
+        overs:0,
         totalovers:20,
-        extras:5,
-        cur_run_rate:5.4,
+        extras:0,
+        cur_run_rate:0,
         batsman1:[
             {
                 b_name:"Kishore",
                 runs:15,
-                balls:7,
+                balls:0,
                 four:2,
                 six:1,
                 strike_rate:208.23
@@ -278,7 +281,10 @@ export default {
            },
         ],
         additionalDialog:1,
-        category:""
+        category:"",
+        scores:[],
+        count:1,
+        noOfBalls:0,
     };
   },
   methods: {
@@ -289,15 +295,49 @@ export default {
         this.category=category
 
     },
-    addValue(value){
-      if(value.key)
-        console.log(value)
-         
-        this.additionalDialog=1;
+    addValue(key){
+    //   if(value.key)
+    //     console.log(value)
+        // this.additionalDialog=1;
+        var val = Number(key.value)
+        if(this.count%6!=0){
+            if(key.name.includes("nb") || key.name.includes("wd") )
+            {
+                this.scores.push(key.name);
+                this.extras+=1;
+            }
+            else{
+                this.scores.push(key.name);
+                this.count++;
+                this.extras+=val;
+            }
+            this.totalscore+=val;
+            this.cur_run_rate = ((this.totalscore/this.count)*100);
+            console.log(this.cur_run_rate);
+            this.additionalDialog=1;
+        }
     },
     addScore(value){
-      this.additionalDialog=3;
-        console.log(value);
+    //   this.additionalDialog=3;
+        // console.log(value);
+        var val = Number(value)
+        // console.log(typeof(val));
+        // console.log(this.count);
+        if(this.count%7!=0){
+            this.scores.push(val);
+            this.count++;
+            this.totalscore+=val;
+            console.log(this.count);
+        }
+        else{
+            // this.noOfBalls+=this.count;
+            this.scores=[];
+            // this.scores.push(val);
+             this.count = 1;
+        }
+        this.cur_run_rate = parseFloat((this.totalscore/this.count)*100);
+        // console.log(this.cur_run_rate);
+        // console.log(this.count);
     }
   },
 };

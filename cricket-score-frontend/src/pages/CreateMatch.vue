@@ -11,6 +11,13 @@
       @chooseTeam="chooseTeam"
       @closeTossModal="closeTossModal"
     />
+     <AddPlayersComponent
+      :selectedTeamId="selectedTeamId"
+    
+      @chooseTeam="chooseTeam"
+      v-if="playerModal"
+      @closePlayerModal="closePlayerModal"
+    />
     <b-container class="main-container">
       <h4 class="heading">Create Match</h4>
       <b-row class="card">
@@ -33,6 +40,7 @@
                 ></b-icon-plus>
               </div>
               <h6>{{ teamA?.teamname }}</h6>
+              <button @click="showPlayerModal('A')" v-if="teamA" class="player">Add Player</button>
             </div>
             <div class="create-match">
               <p>Select Team B</p>
@@ -52,6 +60,7 @@
                 ></b-icon-plus>
               </div>
               <h6>{{ teamB?.teamname }}</h6>
+              <button @click="showPlayerModal('B')" v-if="teamB" class="player">Add Player</button>
             </div>
           </div>
           <span class="error">{{ errorMessage }}</span>
@@ -122,6 +131,7 @@
 <script>
 import AddTeamComponent from "../components/AddTeamComponent";
 import ChooseTossComponent from "../components/ChooseTossComponent.vue";
+import AddPlayersComponent from "../components/AddPlayersComponent.vue"
 import { createMatch, getParticularMatch,editMatch } from "../Service/match.service";
 export default {
   name: "CreateMatch",
@@ -132,12 +142,15 @@ export default {
       showModal: false,
       showTossModal: false,
       selectedTeam: null,
+      selectedTeamId:null,
+      matchId:null,
       pageFor: null,
       teamA: null,
       teamB: null,
       errorMessage: null,
       location: "",
       time: "",
+      playerModal:false,
       date: "",
     };
   },
@@ -154,6 +167,7 @@ export default {
             this.time = response.matchTime;
             this.teamA=response.team1
             this.teamB=response.team2
+            this.matchId=matchId
           },
           error: (err) => {
             console.log(err);
@@ -168,6 +182,7 @@ export default {
   components: {
     AddTeamComponent,
     ChooseTossComponent,
+    AddPlayersComponent
   },
   created() {
     console.log("hello");
@@ -195,6 +210,7 @@ export default {
           team1Id: this.teamA?.teamid,
           team2Id: this.teamB?.teamid,
           userid: userId,
+         matchId:this.matchId
         };
         if (this.pageFor == "create") {
           createMatch({
@@ -224,11 +240,23 @@ export default {
         console.log(payload);
       }
     },
+    showPlayerModal(value)
+    {
+        this.playerModal=true
+      
+        value=='A'?this.selectedTeamId=this.teamA.teamid:this.selectedTeamId=this.teamB.teamid
+        
+
+    },
     closeTossModal() {
       this.showTossModal = false;
     },
     closeModal() {
       this.showModal = false;
+    },
+    closePlayerModal()
+    {
+        this.playerModal=false
     },
     shownModal(value) {
       this.selectedTeam = value;
@@ -249,7 +277,7 @@ export default {
       console.log(this.teamA, this.teamB);
       console.log(this.teamA?.teamid, "   -    ", this.teamB?.teamid);
       console.log(this.teamA?.teamid != this.teamB?.teamid);
-      console.log("from parentt", value);
+      console.log("from parent", value);
       this.showModal = false;
     },
   },
@@ -261,7 +289,16 @@ export default {
   display: flex;
   justify-content: space-evenly;
 }
+.player
+{
+    border: none;
+    background: #d9534f;
+    color: white;
+    padding: 5%;
+    
+    border-radius: 10px;
 
+}
 .Submit button {
   display: inline-block;
   padding: 6px 12px;
