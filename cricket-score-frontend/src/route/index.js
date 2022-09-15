@@ -53,23 +53,19 @@ const router = new VueRouter({
     routes,
   });
 
-  router.afterEach((to, from, next) => {
+  router.afterEach((to, from) => {
        const role = localStorage.getItem("userid")
+       console.log(from)
        if(to.path!="/login" && to.path!="/register"){
          if(role===undefined || role===null)
          {
           router.replace('/login')
          }
-         else{
-          next()
-         }
+         
        }
        else{
-        if(role===undefined || role===null)
+        if(role!=undefined || role!=null)
         {
-           next()
-        }
-        else{
           router.replace('/create')
         }
           

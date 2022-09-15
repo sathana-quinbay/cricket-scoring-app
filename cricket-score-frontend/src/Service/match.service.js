@@ -44,6 +44,17 @@ export const getParticularMatch = ({success,error,payload})=>{
         error && error(e)
     })
 }
+export const tossWonByTeam = ({success,error,payload})=>{
+
+    const api=`http://10.30.1.86:8998/user/setToss`
+    axios.put(api,payload)
+    .then(response => {
+        success && success(response)
+    })
+    .catch((e) => {
+        error && error(e)
+    })
+}
 
 export const deleteMatch = ({success,error,payload})=>{
    

@@ -8,7 +8,7 @@
        <p>Overs:{{key.overs}}</p>
        <div style="display:flex">
        <button @click="deleted(key.matchId)" class="delete-btn" style="">Delete</button>
-       <button @click="scoring()" class="scoring">View</button>
+       <button @click="scoring" class="scoring">View</button>
        </div>
        </div>
     </div>
@@ -39,6 +39,9 @@ export default{
     })
 },
     methods: {
+        scoring(){
+        console.log("dfj")
+        },
       editMatch(id)
       {
          this.$router.push({ path: `/edit/${id}` });
