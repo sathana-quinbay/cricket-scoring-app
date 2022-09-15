@@ -24,7 +24,6 @@ export const getTeams = ({success,error})=>{
     })
 }
 
-
 export const deleteTeam = ({success,error,payload})=>{
    
      const userid = localStorage.getItem("userid");
