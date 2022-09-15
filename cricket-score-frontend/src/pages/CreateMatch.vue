@@ -9,21 +9,26 @@
     <ChooseTossComponent
       v-if="showTossModal"
       @chooseTeam="chooseTeam"
+      :teamA="teamA"
+      :teamB="teamB"
+      :matchId="selectedMatchId"
       @closeTossModal="closeTossModal"
     />
     <AddPlayersComponent
       :selectedTeamId="selectedTeamId"
+      :matchId="selectedMatchId"
       :teamPlayers="teamPlayers"
+      
       v-if="playerModal"
       @closePlayerModal="closePlayerModal"
     />
     <b-container class="main-container">
-      <h4 class="heading">Create Match</h4>
+      <h4 class="heading"> {{ this.pageFor == 'edit' ? "Open match " : "Create Match "}}</h4>
       <b-row class="card">
         <b-col cols="12" lg="12">
           <div class="avatar-div">
             <div class="create-match">
-              <p>Select Team A</p>
+              <p>{{ this.pageFor == 'edit' ? " " : "Select "}}  Team A</p>
               <div class="avatar-create">
                 <img
                   @click="shownModal('A')"
@@ -44,7 +49,7 @@
               </button>
             </div>
             <div class="create-match">
-              <p>Select Team B</p>
+              <p>{{ this.pageFor == 'edit' ? " " : "Select "}}  Team B</p>
               <div class="avatar-create">
                 <img
                   @click="shownModal('B')"
@@ -119,7 +124,7 @@
               <b-col>
                 <div class="Submit">
                   <button @click="saveMatch" class="saveButton">Save</button>
-                  <button class="startMatch" @click="showTossModal = true">
+                  <button v-if="pageFor=='edit'" class="startMatch" @click="startMatch">
                     Start Match
                   </button>
                 </div>
@@ -152,6 +157,7 @@ export default {
       selectedTeamId: null,
       playerslist: "",
       matchId: null,
+      selectedMatchId:null,
       pageFor: null,
       teamA: null,
       teamB: null,
@@ -169,6 +175,7 @@ export default {
       var matchId = this.$route?.params?.id;
       if (matchId != undefined) {
         this.pageFor = "edit";
+        this.selectedMatchId=matchId
         getParticularMatch({
           success: (response) => {
             console.log(response);
@@ -199,6 +206,19 @@ export default {
     this.$store.dispatch("GET_TEAMS");
   },
   methods: {
+    startMatch()
+    {
+     console.log(this.teamA)
+      if(this.teamA.playerList.length!=11||this.teamB.playerList.length!=11)
+      {
+        this.errorMessage="Requires 11 players from each team to start match"
+      }
+      else{
+        this.errorMessage=""
+         this.showTossModal = true
+      }
+
+    },
     saveMatch() {
       const userId = localStorage.getItem("userid");
       if (!this.teamA || !this.teamB) {
@@ -221,11 +241,15 @@ export default {
           team2Id: this.teamB?.teamid,
           userid: userId,
           matchId: this.matchId,
+          matchStatus:"not started"
         };
         if (this.pageFor == "create") {
           createMatch({
             success: (response) => {
               console.log(response);
+              this.pageFor='edit'
+              this.matchId=response.matchId
+              this.selectedMatchId=response.matchId
             },
             error: (e) => {
               console.log(e);
@@ -262,6 +286,7 @@ export default {
       console.log(this.teamPlayers)
     },
     closeTossModal() {
+
       this.showTossModal = false;
     },
     closeModal() {
@@ -417,7 +442,7 @@ label p {
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 80px;
+  
   cursor: pointer;
   border-radius: 50%;
   height: 80px;

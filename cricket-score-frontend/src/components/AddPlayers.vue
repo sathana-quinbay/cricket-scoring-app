@@ -12,6 +12,7 @@
             <b-col cols="12" lg="12" md="12" sm="12" v-for="(player,index) in playersList" :key="player.id">
                 <div class="modal--header d-flex justify-content-between align-items-center">
                     <b-avatar class="avatar-size" :text="index+1"></b-avatar>
+                    <b-avatar class="avatar-size" :text="player.id"></b-avatar>
                     <div>
                     <p>{{player.name}} - {{player.id}}</p>
                 </div>
