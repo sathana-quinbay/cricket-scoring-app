@@ -127,13 +127,15 @@
       hide-footer
   >
   <b-container>
-    <b-row >
-      <b><b-col style="margin-right:200px;">S.No</b-col></b>
-      <b><b-col>Player Name</b-col></b>
+    <b-row>
+      <b><b-col style="margin-right:50px;">S.No</b-col></b>
+      <b><b-col style="margin-right:65px;">Player Name</b-col></b>
+       <b><b-col>Select</b-col></b>
       </b-row>
-      <b-row v-for="(val,index) in 3" :key=index class="players-select">
-      <b-col style="margin-right:120px;">{{index+1}}</b-col>
+      <b-row v-for="(val,index) in 3" :key=index class="spacing-modal">
+      <b-col>{{index+1}}</b-col>
       <b-col>Dhoni</b-col>
+      <b-col><b-button size="sm" style="padding:2%;">select</b-button></b-col>
       </b-row>
 
   </b-container>
@@ -568,8 +570,8 @@ button.widebtn {
   border:1px solid black;
 }
 .players-select{
-   display: flex;;
- 
+   display: flex;
+   margin-left:2px;
 }
 .strike{
   
@@ -580,5 +582,8 @@ button.widebtn {
    background:ghostwhite;
    border-radius:10px;
    border:0.2 solid black;
+}
+.spacing-modal{
+  margin-bottom:1%;
 }
 </style>

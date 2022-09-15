@@ -17,6 +17,7 @@ import BallsComponent from "@/components/BallsComponent"
 import InfoComponent from "@/components/InfoComponent"
 import NavBarComponent from '@/components/NavBarComponent.vue'
 import DisplayPlayers from '@/components/DisplayPlayers'
+import ScorecardComponent from '@/components/ScorecardComponent' 
 Vue.use(VueRouter);
 const routes = [
   {path:'/login',name:'login',component:LoginPage},
