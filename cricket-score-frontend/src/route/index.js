@@ -10,13 +10,14 @@ import LoginPage from "@/components/LoginPage"
 import RegisterPage from "@/components/RegisterPage"
 import AddPlayers from "@/components/AddPlayers"
 import LoaderComponent from '@/components/LoaderComponent'
-
+import DisplayTeams from '@/components/DisplayTeams'
 import MatchCentre from "@/pages/MatchCentre"
 import SummaryComponent from "@/components/SummaryComponent"
 import StatsComponent from "@/components/StatsComponent"
 import BallsComponent from "@/components/BallsComponent"
 import InfoComponent from "@/components/InfoComponent"
 import NavBarComponent from '@/components/NavBarComponent.vue'
+import DisplayPlayers from '@/components/DisplayPlayers'
 Vue.use(VueRouter);
 const routes = [
   {path:'/login',name:'login',component:LoginPage},
@@ -31,6 +32,8 @@ const routes = [
     {path:'',name:'Maincomponent',component:MainComponent},
     {path:'loader',name:'LoaderComponent',component:LoaderComponent},
     {path:'players',name:'AddPlayers',component:AddPlayers},
+    {path:'displayteams',name:'DisplayTeams',component:DisplayTeams},
+    {path:'displayplayers',name:'DisplayTeams',component:DisplayPlayers},
     {path:'matchcentre',name:'MatchCentre',component:MatchCentre,
      children:[
       {path:'summary',name:'summary',component:SummaryComponent},

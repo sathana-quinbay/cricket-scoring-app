@@ -1,10 +1,10 @@
 <template>
   <div>
     <header>
-      <div class="logo">
+      <div class="logo"> 
         <div>
           <b-button class="toggle" v-b-toggle.sidebar-1
-            ><b-icon icon="text-center" style="background:none"></b-icon>
+            ><b-icon icon="text-center" style="background:none;"></b-icon>
           </b-button>
           <b-sidebar id="sidebar-1" title="" shadow>
             <div class="btn-style">
@@ -14,7 +14,8 @@
             </div>
           </b-sidebar>
         </div>
-        <b-button @click="logOut()" style="float: right; margin: 1% 2%"
+        <div><img class="crick-logo" src="https://www.cricbuzz.com/images/cb_logo.svg"/></div> 
+        <b-button @click="logOut()" class="logout-btn" 
           >Logout</b-button
         >
       </div>
@@ -41,7 +42,8 @@ export default {
   left: 0;
   width: 100%;
   height: 60px;
-  background: #b90e0a;
+  /* background: #908146; */
+  background: #009270;
   z-index: 1;
 }
 .logo a {
@@ -55,9 +57,19 @@ export default {
   color: red;
   background-color: #FFBE0F;
 }
+.btn .b-icon.bi, .nav-link .b-icon.bi, .dropdown-toggle .b-icon.bi, .dropdown-item .b-icon.bi, .input-group-text .b-icon.bi {
+    font-size: 160%;
+    vertical-align: text-bottom;
+}
 .toggle {
   float: left;
   margin: 1% 0;
+}
+.logout-btn{
+  float: right;
+  margin: 1% 2%;
+  border: none;
+  border-radius: 14px;
 }
 button.btn.toggle.btn-secondary.collapsed {
     background: none;
@@ -68,8 +80,12 @@ button.btn.toggle.btn-secondary.collapsed {
   flex-direction: column;
   /* float: right; */
 }
-.nav-btn:hover{
-
+.crick-logo{
+   height: 50px;
+    width: 150px;
+    float: left;
+    margin-top: 0.5%;
+    margin-left: 2%;
 }
 .nav-btn{
   border: none;
