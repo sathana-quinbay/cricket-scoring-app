@@ -32,10 +32,10 @@
         <p class="decided"><b>Decided to ?</b></p>
        <div class="groupButton">
          <button  @click="option='Bat'" :class="option=='Bat'? 'selectedbtn':'choiceButton'" >Bat</button>
-        <button  @click="option='Ball'" :class="option=='Ball'? 'selectedbtn':'choiceButton'" >Bowl</button>
+        <button  @click="option='Bowl'" :class="option=='Bowl'? 'selectedbtn':'choiceButton'" >Bowl</button>
       </div>
       <div class="start">
-        <button @click="scoring()" class="scoring">Start Scoring</button>
+        <button @click="scoring" class="scoring">Start Scoring</button>
       </div>
       </div>
     </b-modal>
@@ -84,13 +84,14 @@ export default{
         tossWonByTeam({
           success:(response)=>{
             console.log(response)
+            this.$router.push({name:"summary"})
           },
           error:(err)=>{
             console.log(err)
           },
           payload
         })
-        //this.$router.push({path:"matchcentre/summary"})
+        
        }
     }
 }

@@ -10,7 +10,7 @@
             <div class="btn-style">
               <router-link  to="/match" ><button class="nav-btn">My Matches</button></router-link>
               <router-link to="/create" ><button class="nav-btn">Create Match</button></router-link>
-              <router-link to="" ><button class="nav-btn">My Teams</button></router-link> 
+              <router-link to="/displayTeams" ><button class="nav-btn">My Teams</button></router-link> 
             </div>
           </b-sidebar>
         </div>
