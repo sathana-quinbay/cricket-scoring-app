@@ -17,7 +17,7 @@
          <template #modal-header>
            <h5>Create Team</h5>
             <button @click="closeModal" class="closeButton">
-<b-icon-x-lg style="color:white"/>
+<router-link to='/create'><b-icon-x-lg style="color:white"/></router-link>
         </button>
         </template>
          <div v-if="createNew">
@@ -178,7 +178,7 @@ export default {
       ...mapGetters({
           teams:'getTeams'
       })
-    }
+    },
 }
 </script>
 
@@ -192,7 +192,7 @@ export default {
     right: 10px;
 }
 input[type=search] {
-    border: 0.01px solid black;
+    border: 0.01px solid whitesmoke;
     background: whitesmoke;
     border-radius:10px;
     outline:none;
@@ -201,10 +201,10 @@ input[type=search] {
     margin-top:0%;
     padding-top:0%;
     text-align: center;
-    border:none;
+    border:0.1px solid whitesmoke;
     border-radius: 5px;
     background: #f4f2f2;
-    border: 1px solid #f4f2f2;
+   
 
 }
 

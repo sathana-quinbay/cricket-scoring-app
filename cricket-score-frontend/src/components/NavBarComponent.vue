@@ -2,6 +2,8 @@
  <div>
    <header>
         <div class="logo">
+          <img style="float:left;margin-left:5%;margin-top:0.2%;border-radius:10px;" src="../assets/cricLogo.svg" height=50px width=50px>
+          <h3 class="logo-align">Crick Masters</h3>
     </div> 
 
   </header>
@@ -36,6 +38,11 @@ export default {
 .logo a:hover{
     color:red;
 }
-
+.logo-align{
+  color:whitesmoke;
+  float:left;
+  padding-top:1%;
+  padding-left:7px;
+}
 </style>
 

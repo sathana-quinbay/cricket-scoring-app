@@ -6,14 +6,10 @@ import CreateMatch from "../pages/CreateMatch"
 import WagonWheelComponent from '../components/WagonWheelComponent'
 
 import AddTeamComponent from '../components/AddTeamComponent'
-import ScorecardComponent from '../components/ScorecardComponent'
 import LoginPage from "@/components/LoginPage"
 import RegisterPage from "@/components/RegisterPage"
 import AddPlayers from "@/components/AddPlayers"
-
-import LiveScoreNavTab from '@/components/LiveScoreNavTabs'
 import LoaderComponent from '@/components/LoaderComponent'
-import InfoComponent from '@/components/InfoComponent'
 
 import MatchCentre from "@/pages/MatchCentre"
 import SummaryComponent from "@/components/SummaryComponent"
@@ -26,11 +22,10 @@ Vue.use(VueRouter);
 const routes = [
   {path:'/login',name:'login',component:LoginPage},
   {path:'/register',name:'register',component:RegisterPage},
+  {path:'/summary',name:'summary',component:SummaryComponent},
   {path:'/',name:'NavBarComponent',component:NavBarComponent,
-  children:[
-    
-    
 
+  children:[
     {path:'wagon',name:'WagonWheelComponent',component:WagonWheelComponent},
     {path:'createMatch/AddTeam',name:'AddTeamComponent',component:AddTeamComponent},
 
@@ -38,14 +33,12 @@ const routes = [
     {path:'match',name:'MyMatches',component:MyMatches},
     
     {path:'',name:'Maincomponent',component:MainComponent},
-
     {
       path:'loader',name:'LoaderComponent',component:LoaderComponent},
 
     {path:'players',name:'AddPlayers',component:AddPlayers},
     {path:'matchcentre',name:'MatchCentre',component:MatchCentre,
     children:[
-      {path:'summary',name:'summary',component:SummaryComponent},
       {path:'scorecard',name:'scorecard',component:ScorecardComponent},
       {path:'stats',name:'stats',component:StatsComponent},
       {path:'balls',name:'balls',component:BallsComponent},

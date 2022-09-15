@@ -85,8 +85,17 @@ export default {
        if(this.userLogin.phoneno!=null && this.userLogin.password!=null)
        {
           UserLogin({
-            success:(response) => {
-               console.log(response)
+            success:(data) => {
+               console.log(data)
+               localStorage.setItem("userid",data.userid);
+
+               localStorage.setItem("username",data.username);
+
+               if(data.userid){
+
+                   this.$router.push({path:"/create"})
+
+               }
             },
             error:(e) =>{
                console.log(e);

@@ -3,14 +3,14 @@
     <div>
       <h4>India</h4>
       <p>1st Innings</p>
-      <h1 style="color: #319da0">92-7</h1>
+      <h1 style="color: #319da0">{{total}}-{{wickets}}</h1>
       <hr class="table--hr" />
     </div>
     <div>
       <b-row style="font-weight: bold">
-        <b-col>Extras - 0</b-col>
+        <b-col>Extras - {{extras}}</b-col>
         <b-col>Overs - 2/20</b-col>
-        <b-col>CRR - 5.6</b-col>
+        <b-col>CRR - {{runrate()}}</b-col>
       </b-row>
       <b-row style="margin-bottom: 2%; font-weight: bold">
         <b-col>Partnership - 50(35)</b-col>
@@ -23,23 +23,23 @@
         <b-col>6s</b-col>
         <b-col>SR</b-col>
       </b-row>
-      <b-row>
-        <b-col>Kishore</b-col>
+      <div v-if="!ballByBall.length">
+        <b-row v-for="i in 2" :key="i" style="margin-bottom:1%"><b-col style="font-style:oblique;">Select Batsman</b-col><b-col>0</b-col>
+        <b-col>0</b-col>
+        <b-col>0</b-col>
+        <b-col>0</b-col>
+        <b-col>0.00</b-col></b-row>
+      </div>
+      <div v-if="ballByBall.length">
+      <b-row v-for="(i,index) in 2" :key="index">
+       <b-col @click="strikeRotate(index)" :class="(strike==index)?'strike':''">Kishore<sup v-show="(strike==index)">*</sup></b-col>
         <b-col>25</b-col>
         <b-col>12</b-col>
         <b-col>2</b-col>
         <b-col>1</b-col>
         <b-col>208.33</b-col>
       </b-row>
-      <b-row style="margin-bottom: 2%">
-        <b-col>Kishore</b-col>
-        <b-col>25</b-col>
-        <b-col>12</b-col>
-        <b-col>2</b-col>
-        <b-col>1</b-col>
-        <b-col>208.33</b-col>
-      </b-row>
-
+      </div>
       <b-row style="margin-bottom: 2%; font-weight: bold">
         <b-col><b-icon icon="pencil-fill" />Bowler</b-col>
         <b-col>O</b-col>
@@ -58,6 +58,7 @@
       </b-row>
       <hr class="table--hr" />
       <b-container class="bgColor"  fluid v-show="additionalDialog==3">
+         <button class="wide-header" @click="additionalDialog=true">X</button>
  <img
       src="../assets/wheel.jpg"
       width="300"
@@ -68,9 +69,14 @@
     
       srcset=""
     />
-
          </b-container>
+          <div v-show="true"  class="ball-by-ball">
+           <b-avatar class="ball-align" v-for="i in ballByBall" :key="i" variant="primary" :text="i"></b-avatar>
+       </div>
       <div v-show="additionalDialog!=3"  class="scoringCard">
+         <b-container style="background:#ff9900;margin-top:1.5%;"  fluid v-show="additionalDialog==0">
+         <b-button style="border:1px solid white;back" v-b-modal.modal-center>Select batsman</b-button>
+         </b-container>
         <table class="table-style" v-show="additionalDialog==1">
           <tr>
             <td><button class="scorebtn" @click="addScore('1')">1</button></td>
@@ -88,7 +94,7 @@
           </tr>
           <tr>
             <td><button class="scorebtn" @click="addScoreList( moreRunsList,'More Runs')">4 5 6 7</button></td>
-            <td><button class="scorebtn" @click="addScore('Undo')">Undo</button></td>
+            <td><button class="scorebtn" @click="undo()">Undo</button></td>
             <td><button class="scorebtn" @click="addScoreList(wicketList,'Wicket')">Out</button></td>
             <td>Undo</td>
             <td>Out</td>
@@ -112,14 +118,45 @@
         </b-container>
       </div>
     </div>
+    <div>
+  <b-modal id="modal-center" centered title="Select Batsman"
+  header-bg-variant="danger"
+      header-text-variant="light"
+      body-bg-variant="bodyBgVariant"
+      body-text-variant="bodyTextVariant"
+      hide-footer
+  >
+  <b-container>
+    <b-row >
+      <b><b-col style="margin-right:200px;">S.No</b-col></b>
+      <b><b-col>Player Name</b-col></b>
+      </b-row>
+      <b-row v-for="(val,index) in 3" :key=index class="players-select">
+      <b-col style="margin-right:120px;">{{index+1}}</b-col>
+      <b-col>Dhoni</b-col>
+      </b-row>
+
+  </b-container>
+  </b-modal>
+</div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
+        ballByBall:[],
         buttonList:[],
+        c:0,
+        wickets:0,
+        total:0,
+        totalUndo:0,
+        Lastele:true,
+        strike:1,
+        extras:0,
+        no_of_overs:0,
         wicketList:[
            {
                 name:"Bowled",
@@ -268,6 +305,58 @@ export default {
         category:""
     };
   },
+  created()
+  {
+    if(this.no_of_overs==0&&this.c==0)
+    {
+      this.additionalDialog=0;
+    }
+     let payload={
+            noOfOver:this.no_of_overs+1,
+            bowlerId:12,
+            matchId:'27',
+            teamId:4,
+
+         }
+         axios.post('http://10.30.1.46:8087/insertOver',payload).then(response=>(console.log(response)));
+         axios.get(`http://10.30.1.46:8087/getBatsManDetails/${'27'}/${4}/${23}`).then(response=>(console.log(response)));
+  },
+  watch:
+  {
+     no_of_overs(newvalue,oldValue)
+     {
+         let payload={
+            noOfOver:this.no_of_overs+1,
+            bowlerId:12,
+            matchId:'27',
+            teamId:4,
+
+         }
+         axios.post('http://10.30.1.46:8087/insertOver',payload).then(response=>(console.log(response)))
+         oldValue;
+  },
+    ballByBall(newvalue,oldValue)
+    {
+      let payload={
+        matchId:'27',
+        teamId:4,
+        batsManId:23,
+        bowlerId:12,
+        batsManName:'Dhoni',
+        bowlerName:'Bumrah',
+        noOfOver:this.no_of_overs+1,
+        noOfBall:this.c,
+        runs:6,
+        runStatus:'none',
+        wicket:0,
+        wicketStatus:'Not Out',
+        catchby:'none'
+      }
+       axios.post('http://10.30.1.46:8087/insertBall',payload).then(response=>(console.log(response)));
+        axios.get(`http://10.30.1.46:8087/getBatsManDetails/${'27'}/${4}/${23}`).then(response=>(console.log(response)));
+       oldValue
+    }
+  },
   methods: {
     addScoreList(value,category){
         // console.log(value)
@@ -277,15 +366,108 @@ export default {
 
     },
     addValue(value){
-      if(value.key)
+      if(!(value.value>='A'&&value.value<='Z'))
+      {
+         this.total=this.total+Number(value.value);
+      }
+       else
+       {
+        this.wickets+=1;
+       }
+       if(!value.name.includes('nb')&&!value.name.includes('wd'))
+          {
+              this.c=this.c+1;
+          }
+          else{
+            this.extras+=1;
+          }
+       if(this.c<=6)
+        {
+        this.ballByBall.push(value.name);
+        }
+        else{
+           this.no_of_overs+=1;
+          this.ballByBall=[];
+          this.c=0;
+        }
+         
+
         console.log(value)
         this.additionalDialog=1;
     },
+    undo()
+    {
+       this.totalUndo=this.ballByBall[this.ballByBall.length-1];
+       if(this.totalUndo.length>1)
+       {
+           if(!(this.totalUndo.charAt(0)>='A'&&this.totalUndo.charAt(0)<='Z'))
+          {
+            console.log(!(this.totalUndo.charAt(0)>='A'&&this.totalUndo.charAt(0)<='Z'));
+          if(this.totalUndo.charAt(0)=='n'||this.totalUndo.charAt(0)=='w')
+          {
+            this.total=this.total-1;
+            this.extras-=1;
+          }
+          else
+          {
+            if(this.totalUndo.includes('wd')||this.totalUndo.includes('nb'))
+            {
+            this.total=this.total-(Number(this.totalUndo.charAt(0))+1);
+             this.extras-=1;
+            }
+            else
+            {
+             this.total=this.total-Number(this.totalUndo.charAt(0));
+              this.extras-=Number(this.totalUndo.charAt(0));
+            }
+          }
+       }
+        else
+       {
+        this.wickets-=1;
+       }
+       }
+       else
+       {
+           this.total=this.total-this.totalUndo;
+       }
+       console.log(this.ballByBall.pop());
+     
+       this.c=this.c-1;
+       
+    },
     addScore(value){
-      this.additionalDialog=3;
-        console.log(value);
+      // this.additionalDialog=3;
+        console.log(this.total);
+        this.total=this.total+Number(value);
+        if(this.c<6)
+        {
+        this.ballByBall.push(value);
+        this.c=this.c+1;
+
+        }
+        else{
+          this.no_of_overs+=1;
+          this.ballByBall=[];
+          this.c=0;
+        }
+        
+    },
+    runrate()
+    {
+      if(this.no_of_overs==0&&this.c==0)
+      {
+        let c=0;
+           return c.toFixed(2);
+      }
+      return ((this.total/((this.no_of_overs*6)+this.c))*100).toFixed(2);
+    },
+    strikeRotate(value)
+    {
+      this.strike=value;
     }
-  },
+
+},
 };
 </script>
 
@@ -362,5 +544,35 @@ button.widebtn {
     border: none;
     top: 0;
     right: 1%;
+}
+.ball-by-ball
+{
+   height:15%;
+   background:white;
+   border-radius:10px;
+   padding-top:0.5% ;
+
+}
+.ball-align{
+  margin-right:2%;
+  font-size: 65%;
+}
+.players-select :hover{
+  background: ghostwhite;
+  border:1px solid black;
+}
+.players-select{
+   display: flex;;
+ 
+}
+.strike{
+  
+   background:#ff9900;
+   border-radius:10px;
+}
+.strike :hover{
+   background:ghostwhite;
+   border-radius:10px;
+   border:0.2 solid black;
 }
 </style>
