@@ -14,15 +14,16 @@
             >Should contain 10 digits</span
           >
             <b-form-input class="input-password" v-model="registerDetails.password" aria-label="password" type="password" placeholder="Password"></b-form-input>
-            <span v-if="checkPassword==true" style="color: red"
-            >Your password must be 8-15 characters long,uppercase,lowercase and numbers</span
-          >
             <b-form-text id="password-help-block">
              
             </b-form-text>
-            <b-form-input class="input-confirm-password" aria-label="password" type="password" placeholder="Confirm Password"></b-form-input>
-
+            <b-form-input class="input-confirm-password" v-model="registerDetails.cpassword" aria-label="password" type="password" placeholder="Confirm Password"></b-form-input>
+            <span v-if="checkPassword" style="color: red"
+            >Password & Confirm password doesn't match</span
+          >
             <b-button class="reg-btn" variant="outline-primary" @click="userRegister">Register</b-button><br>
+            <span v-if="displayError" style="color:red">Enter all the fields</span><br>
+            <span v-show="checkRegister" style="color:red">{{message}}</span><br>
            <router-link to="/login" >Already have an account? Sign In</router-link>
           </b-card>
           </b-col>
@@ -43,27 +44,43 @@ export default {
           registerDetails:{
             username:null,
             phoneno:null,
-            password:null
+            password:null,
+            cpassword:null
           },
           checkName:false,
           checkPhoneNum:false,
           checkPassword:false,
+          displayError:false,
+          checkRegister:false,
+          message:"",
         }
     },
     methods:{
         userRegister(){
-            if(this.registerDetails.username!=null && this.registerDetails.password!=null && this.registerDetails.phoneno!=null)
+            if(this.registerDetails.username!=null && this.checkName==false && 
+            this.registerDetails.password!=null && this.registerDetails.cpassword!=null &&
+            this.checkPassword==false && this.registerDetails.phoneno!=null && this.checkPhoneNum==false)
             {
             console.log("inside if")
             UserRegister({
-            success:(response) => {
-               console.log(response)
+            success:(data) => {
+               console.log(data.response)
+               if(data.status==200){
+                this.$router.push("/login");
+               }
             },
             error:(e) =>{
-               console.log(e);
+               console.log(e.response.data);
+               if(e.response.status==409){
+                  this.checkRegister = true;
+                  this.message = e.response.data;
+               }
             },
             payload:this.registerDetails
           })
+            }
+            else{
+                this.displayError=true;
             }
         }
     },
@@ -81,13 +98,10 @@ export default {
         ? (this.checkPhoneNum = false)
         : (this.checkPhoneNum = true);
     },
-    // "registerDetails.password"() {
-    //     var passwordValidate = new RegExp("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).*$/");
-    //     passwordValidate.test(this.registerDetails.password)
-    //     ?(this.checkPassword=false)
-    //     :(this.checkPassword=true)
-    // },
-       
+    "registerDetails.cpassword"() {
+        (this.registerDetails.password != this.registerDetails.cpassword)?
+            (this.checkPassword=true):(this.checkPassword=false);
+        }
     }
 }
 </script>

@@ -232,8 +232,10 @@ export default {
             },
             payload: payload,
           });
+
         } else {
           editMatch({
+
             success: (response) => {
               console.log(response);
             },
@@ -287,7 +289,7 @@ export default {
       console.log(this.teamA, this.teamB);
       console.log(this.teamA?.teamid, "   -    ", this.teamB?.teamid);
       console.log(this.teamA?.teamid != this.teamB?.teamid);
-      console.log("from parentt", value);
+      console.log("from parent", value);
       this.showModal = false;
     },
   },
