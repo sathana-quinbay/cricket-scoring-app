@@ -12,12 +12,14 @@
       header-text-variant="light"
       body-text-variant="bodyTextVariant"
       footer-bg-variant="footerBgVariant"
+
       footer-text-variant="footerTextVariant"
     >
       <template #modal-header>
         <h5>Create Team {{teamOption}}</h5>
         <button @click="closeModal" class="closeButton">
           <b-icon-x-lg style="color: white" />
+
         </button>
       </template>
       <div v-if="dialogFor=='existing'">
@@ -252,6 +254,7 @@ this.hoveredItem=teamid
         payload,
       });
     },
+
   },
   computed: {
     ...mapGetters({
@@ -277,6 +280,7 @@ this.hoveredItem=teamid
   display:flex;
   justify-content: flex-start;
 }
+
 .team{
     margin-top: 1%;
     padding-top: 1%;

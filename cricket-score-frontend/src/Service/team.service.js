@@ -1,5 +1,6 @@
 import axios from "axios"
 
+
 export const teamRegister = ({success,error,payload})=>{
     const userId = localStorage.getItem("userid")
     const api=`http://10.30.1.86:8998/user/addTeam/${userId}`

@@ -5,10 +5,15 @@ export const UserLogin = ({success,error,payload})=>{
     axios
     .post(api,payload)
     .then(response => {
+
         success && success(response)
+
     })
+
     .catch((e) => {
+
         error && error(e)
+
     })
 }
 
@@ -24,4 +29,5 @@ export const UserRegister = ({success,error,payload})=>{
         error && error(e)
     })
 }
+
 

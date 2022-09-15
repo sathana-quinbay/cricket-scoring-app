@@ -23,7 +23,7 @@
             src="https://media.gettyimages.com/photos/dhonis-kit-in-india-dressing-rooms-ahead-of-the-group-stage-match-of-picture-id1156218412?k=20&m=1156218412&s=612x612&w=0&h=e_Lk4yecrNWmNnASwhYrrqu2n6y1nLCSFy9VrRubMuM="
             alt="image slot" style="height:350px;width:1000px;" fluid-grow
           ></b-img>
-        </template> <b-button variant="danger">Click Here</b-button></b-carousel-slide>
+        </template><b-button variant="danger">Click Here</b-button></b-carousel-slide>
 
 
       <b-carousel-slide
@@ -35,10 +35,11 @@
             alt="image slot" style="height:350px;width:1000px;" fluid-grow
           ></b-img>
         </template>
-        <b-button variant="danger">Click here</b-button>
+        <router-link to='create'><b-button variant="danger">Click here</b-button></router-link>
       </b-carousel-slide>
     </b-carousel>
   </div>
+  <router-link to='create'>
   <div class="create-a-match">
   <b-card
     title="Create Match"
@@ -49,9 +50,9 @@
     style="max-width: 20rem;"
     class="mb-2"
   >
-  <createMatchModal></createMatchModal>
   </b-card>
     </div>
+  </router-link>
     </div>
   <div class="arrange-stats">
   <div class="user-stats">
@@ -97,7 +98,7 @@
 </template>
 
 <script>
-import createMatchModal from '../components/CreateMatchModal.vue';
+// import createMatchModal from '../components/CreateMatchModal.vue';
 import {mapGetters} from 'vuex';
 export default {
   name:"MainComponent",
@@ -112,10 +113,6 @@ export default {
     mounted()
     {
      console.log(this.teams)
-    },
-    components:
-    {
-      createMatchModal
     },
     methods: {
       onSlideStart() {
@@ -143,6 +140,7 @@ export default {
 <style scoped>
 .hello{
     scroll-behavior: smooth;
+    margin-top:5%;
 }
 h3{
   float:left;
