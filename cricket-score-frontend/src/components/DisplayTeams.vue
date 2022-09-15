@@ -8,21 +8,32 @@
         </template>
     </b-table>
   </div>
-   <DisplayPlayers @closeModal="closeModal" v-if="showModal" :item="list"/>
+   <!-- <DisplayPlayers @closeModal="closeModal" v-if="showModal" :item="list"/> -->
+   <AddPlayersComponent
+      :selectedTeamId="selectedTeamId"
+    
+      :teamPlayers="teamPlayers"
+      
+      v-if="showModal"
+      @closePlayerModal="closePlayerModal"
+    />
    <DeleteModal v-if="showdelmodal" @closeDelModal="closeDelModal" :teamid="delid"/>
     </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import DisplayPlayers from "@/components/DisplayPlayers.vue"
+// import DisplayPlayers from "@/components/DisplayPlayers.vue"
 import DeleteModal from "./DeleteModal.vue"
+import AddPlayersComponent from "../components/AddPlayersComponent.vue"
     export default {
     data() {
         return {
             fields: ["teamname", "teamlocation", "Actions"],
             showModal:false,
             showdelmodal:false,
+            selectedTeamId:null,
+            teamPlayers:null,
             list:[],
             delid:null,
         };
@@ -40,8 +51,12 @@ import DeleteModal from "./DeleteModal.vue"
         open(item) {
             this.showModal=true
             this.list = item;
+            this.selectedTeamId=item.teamid
+            this.teamPlayers=item.playerList
+            console.log(this.selectedTeamId)
+            console.log(this.teamPlayers)
         },
-        closeModal(){
+        closePlayerModal(){
             this.showModal=false;
         },
         del_team(teamid){
@@ -52,7 +67,7 @@ import DeleteModal from "./DeleteModal.vue"
             this.showdelmodal=false;
         }
     },
-    components: { DisplayPlayers, DeleteModal }
+    components: {  DeleteModal,AddPlayersComponent}
 }
   </script>
 

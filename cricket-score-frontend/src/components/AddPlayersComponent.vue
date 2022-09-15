@@ -179,7 +179,7 @@ export default {
       playerList: [],
     };
   },
-  props: ["selectedTeamId", "teamPlayers", "matchId"],
+  props: ["selectedTeamId", "teamPlayers"],
   mounted() {
     this.getPlayerList();
     console.log(this.selectedTeamId, this.teamPlayers);
@@ -216,7 +216,7 @@ export default {
     getPlayerList() {
       console.log("inside get player list");
       var payload = {
-        matchId: this.matchId,
+      
         teamId: this.selectedTeamId,
       };
       getPlayersByTeam({
