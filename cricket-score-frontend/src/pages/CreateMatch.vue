@@ -16,7 +16,7 @@
     />
     <AddPlayersComponent
       :selectedTeamId="selectedTeamId"
-      :matchId="selectedMatchId"
+    
       :teamPlayers="teamPlayers"
       
       v-if="playerModal"

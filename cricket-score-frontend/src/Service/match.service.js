@@ -58,9 +58,9 @@ export const tossWonByTeam = ({success,error,payload})=>{
 
 export const deleteMatch = ({success,error,payload})=>{
    
-    const userid = localStorage.getItem("userId");
-    const api=`http://10.30.1.86:8998/user/deleteTeam/${userid}/{teamid}`
-    axios.delete(api,payload)
+    // const userid = localStorage.getItem("userId");
+    const api=`http://10.30.1.86:8998/user/deleteMatch/${payload}`
+    axios.delete(api)
     .then(response => {
         success && success(response.data)
     })
