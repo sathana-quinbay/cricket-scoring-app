@@ -34,10 +34,20 @@
             <button @click="addPlayer" class="submitAdd">Add Player</button>
         </b-col>
       </b-row>
+      <b-row>
+         <b-col class="playersComponent" cols="12" lg="8" md="6" sm="12">
+             
+         </b-col>
+      </b-row>
     </b-container>
   </b-modal>
 </template>
 <style scoped>
+.playersComponent
+{
+    height: 400px;
+    overflow: ;
+}
 .closeButton {
   background: none;
   border: none;
@@ -80,11 +90,11 @@ export default {
       playerName: "",
     };
   },
-  props:["selectedTeamId"],
+  props:["selectedTeamId","teamPlayers"],
   mounted()
   {
 
-  console.log(this.selectedTeamId)
+  console.log(this.selectedTeamId,this.teamPlayers)
     //  getPlayerA({
     //         success:(response)=>{
     //             console.log(response)
