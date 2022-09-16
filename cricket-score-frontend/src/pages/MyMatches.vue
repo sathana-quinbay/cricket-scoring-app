@@ -1,14 +1,14 @@
 <template>
 
     <div class="match-head">
-       <div @click="editMatch(key.matchId)" class="card" v-for="(key,index) in matchList" :key="index">
+       <div  class="card" v-for="(key,index) in matchList" :key="index">
         <h4>{{key.matchName}}</h4>
         <p> {{key.matchLocation}} </p> 
        <p>{{new Date(key.matchDate).toDateString()}} - {{key.matchTime}}</p>
        <p>Overs:{{key.overs}}</p>
        <div style="display:flex">
        <button @click="deleted(key.matchId)" class="delete-btn" style="">Delete</button>
-       <button @click="scoring" class="scoring">View</button>
+       <button @click="editMatch(key.matchId)" class="scoring">View</button>
        </div>
        </div>
     </div>
@@ -39,19 +39,17 @@ export default{
     })
 },
     methods: {
-        scoring(){
-        console.log("dfj")
-        },
       editMatch(id)
       {
          this.$router.push({ path: `/edit/${id}` });
       },
       deleted(val){
             var value=val
+            console.log(typeof(value))
             deleteMatch( {
                 success:(response)=>{
                 console.log(response)
-              
+                this.$store.dispatch("GET_MATCH_LIST");
                 },
                 error:(e)=>{
                    console.log(e)

@@ -25,7 +25,6 @@
     </div>
 
   </div>
-
 </template>
 <script>
 import logOut from "@/Mixins/validation";

@@ -27,7 +27,7 @@
 </div>
 </template>
 <style>
-    .closeButton {
+.closeButton {
   background: none;
   border: none;
   position: absolute;

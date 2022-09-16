@@ -84,7 +84,8 @@ export default{
         tossWonByTeam({
           success:(response)=>{
             console.log(response)
-            this.$router.push({name:"summary"})
+            localStorage.setItem("matchId",this.matchId)
+            this.$router.push("matchcentre/summary")
           },
           error:(err)=>{
             console.log(err)
