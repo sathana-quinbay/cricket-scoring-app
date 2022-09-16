@@ -5,7 +5,7 @@
         <template #cell(Actions)="item">
           <b-button class="match-btn" @click="viewMatch(item.item.teamid)">Matches</b-button>
           <b-button class="view-btn" @click="open(item.item)">Players</b-button>
-          <b-button class="del-btn" @click="del_team(item.item.teamid)">Delete</b-button>
+         <b-icon icon="trash" class="del-btn" @click="del_team(item.item.teamid)"></b-icon> 
         </template>
       </b-table>
     <b-modal
@@ -135,7 +135,7 @@ export default {
   margin-right: 5%;
 }
 .display-match{
-    width: 70%;
+    width: 80%;
     height: 25%;
     margin: 0% 10%;
     font-size: 25px;
@@ -143,7 +143,9 @@ export default {
 .match-card{
     border-radius: 20px;
     margin-top: 5%;
-   
+}
+.del-btn{
+  cursor: pointer;
 }
 .closeButton {
   background: none;

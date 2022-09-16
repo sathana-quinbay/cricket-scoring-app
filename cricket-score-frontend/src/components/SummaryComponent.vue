@@ -141,7 +141,7 @@
       <b><b-col style="margin-right:65px;">Player Name</b-col></b>
        <b><b-col>Select</b-col></b>
       </b-row>
-      <b-row @click="chooseBatsman(val)" v-for="(val,index) in teamA.playerList" :key=index class="spacing-modal">
+      <b-row @click="choosePlayer(val)" v-for="(val,index) in teamA.playerList" :key=index class="spacing-modal">
       <b-col>{{index+1}}</b-col>
       <b-col>{{val.playername}}</b-col>
       <b-col><b-button size="sm" style="padding:2%;">select</b-button></b-col>

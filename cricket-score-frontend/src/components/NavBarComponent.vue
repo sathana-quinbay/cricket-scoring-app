@@ -16,7 +16,7 @@
         </div>
         <div><img class="crick-logo" src="https://www.cricbuzz.com/images/cb_logo.svg"/></div> 
         <b-button @click="logOut()" class="logout-btn" 
-          >Logout</b-button
+          ><b-icon icon="power" aria-hidden="true"></b-icon> Logout</b-button
         >
       </div>
     </header>
@@ -66,10 +66,19 @@ export default {
 }
 .logout-btn{
   float: right;
-  margin: 1% 2%;
   border: none;
   border-radius: 14px;
+    background: none;
+    margin-top: 1%;
+    margin-right: 1%;
+    height: 40px;
+    border: 1px solid white;
 }
+.logout-btn:hover{
+  background: none;
+  border:1px solid white;
+}
+
 button.btn.toggle.btn-secondary.collapsed {
     background: none;
     border: none;

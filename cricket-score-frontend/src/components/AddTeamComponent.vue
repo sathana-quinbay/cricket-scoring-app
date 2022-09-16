@@ -59,6 +59,7 @@
           <button @click="submitTeam" class="createButton">Create</button>
         </div>
       </div>
+
       <div v-if="dialogFor=='add'" class="align-team">
         <div v-show="!dispSearch">Selected Team</div>
          <center>

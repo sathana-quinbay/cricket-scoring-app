@@ -40,6 +40,7 @@ input::-webkit-inner-spin-button {
   padding-top: 10%;
   padding-left:10% ;
  /* transform:translate(-50%,-50%); */
+ min-height: 25%;
 
 }
 .input-mob{
@@ -61,10 +62,12 @@ input::-webkit-inner-spin-button {
 .align-div.col-sm-12.col-md-12.col-lg-6.col-12 {
     padding: 0;
     margin: 0;
+ 
 }
 .align-div.col-sm-12.col-md-12.col-lg-4.col-12 {
     padding: 0;
     margin: 0;
+   
 }
 </style>
 

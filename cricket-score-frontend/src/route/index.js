@@ -44,7 +44,6 @@ const routes = [
       {path:'info',name:'info',component:InfoComponent},
     ]
   },
-  {path:'balls',name:'BallsComponent',component:BallsComponent},
 
 
   ]},
