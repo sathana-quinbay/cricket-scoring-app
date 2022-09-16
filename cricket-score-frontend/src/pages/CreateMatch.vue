@@ -29,16 +29,20 @@
           <div class="avatar-div">
             <div class="create-match">
               <p>{{ this.pageFor == 'edit' ? " " : "Select "}}  Team A</p>
-              <div class="avatar-create">
-                <img
+              <div class="logoImg"  v-if="teamA">
+                 <img
+                 
                   @click="shownModal('A')"
-                  v-if="teamA"
+                 
                   src="https://img.freepik.com/premium-vector/cricket-team-logo-template-design_630259-287.jpg?w=2000"
                   alt=""
                   srcset=""
                 />
+              </div>
+              <div v-else class="avatar-create">
+               
                 <b-icon-plus
-                  v-else
+                  
                   @click="shownModal('A')"
                   class="h1"
                 ></b-icon-plus>
@@ -50,17 +54,21 @@
             </div>
             <div class="create-match">
               <p>{{ this.pageFor == 'edit' ? " " : "Select "}}  Team B</p>
-              <div class="avatar-create">
+              <div class="logoImg"  v-if="teamB">
                 <img
+              
                   @click="shownModal('B')"
-                  v-if="teamB"
+                 
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm8dXDIPv8ANggS-8xpenpGLtNT1u4wP_8Yg&usqp=CAU"
                   alt=""
                   srcset=""
                 />
+              </div>
+              <div v-else class="avatar-create">
+                
 
                 <b-icon-plus
-                  v-else
+                  
                   @click="shownModal('B')"
                   class="h1"
                 ></b-icon-plus>
@@ -331,7 +339,8 @@ export default {
   background: #d9534f;
   color: white;
   padding: 5%;
-
+  height: 40px;
+  width: 100px;
   border-radius: 10px;
 }
 .Submit button {
@@ -359,6 +368,14 @@ export default {
   color: #fff;
   background-color: #5cb85c;
   border-color: #4cae4c;
+}
+.logoImg
+{
+  
+  height: 100px;
+}
+.logoImg img{
+  border-radius:20px;
 }
 .match-form {
   margin-top: 4%;
@@ -433,7 +450,8 @@ label p {
   justify-content: space-around;
 }
 .create-match h6 {
-  margin-top: 30%;
+  margin-top: 0%;
+  height: 30px;
 }
 
 .avatar-create {
