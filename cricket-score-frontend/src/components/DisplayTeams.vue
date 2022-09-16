@@ -37,6 +37,7 @@
     Date : {{new Date(key.matchDate).toDateString()}}<br>
      Time : {{key.matchTime}}<br>
      Status : {{key.matchStatus}}<br>
+     Toss won by : {{key.tossWonByTeam}}<br>
      Choose to : {{key.chooseTo}}
   </b-card-text>
 </b-card>
