@@ -318,7 +318,6 @@ export default {
         this.errorMessage = "cant chose same team";
         team == "A" ? (this.teamA = null) : (this.teamB = null);
       }
-
       console.log(this.teamA, this.teamB);
       console.log(this.teamA?.teamid, "   -    ", this.teamB?.teamid);
       console.log(this.teamA?.teamid != this.teamB?.teamid);

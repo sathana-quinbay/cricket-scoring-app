@@ -43,7 +43,10 @@ const routes = [
       {path:'balls',name:'balls',component:BallsComponent},
       {path:'info',name:'info',component:InfoComponent},
     ]
-  }
+  },
+  {path:'balls',name:'BallsComponent',component:BallsComponent},
+
+
   ]},
    
 
