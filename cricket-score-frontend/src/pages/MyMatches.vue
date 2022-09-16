@@ -1,7 +1,6 @@
 <template>
-
     <div class="match-head">
-       <div  class="card" v-for="(key,index) in matchList" :key="index">
+       <b-card  class="card" v-for="(key,index) in matchList" :key="index">
         <h4>{{key.matchName}}</h4>
         <p> {{key.matchLocation}} </p> 
        <p>{{new Date(key.matchDate).toDateString()}} - {{key.matchTime}}</p>
@@ -10,7 +9,7 @@
        <button @click="deleted(key.matchId)" class="delete-btn" style="">Delete</button>
        <button @click="editMatch(key.matchId)" class="scoring">View</button>
        </div>
-       </div>
+       </b-card>
     </div>
     
 </template>
@@ -64,9 +63,9 @@ export default{
 
 <style scoped>
 .card{
-    width: 300px;
-    height: 250px;
-    background: FFFFFF;
+    max-width: 300px;
+    max-height: 300px;
+    background: #FFFFFF;
     margin: 2% 7% 3% 5% ;
     border-radius: 25px;
     padding-top: 10px;

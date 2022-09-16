@@ -40,8 +40,6 @@
         </b-col>
         <b-col cols="12" lg="12" md="12" sm="12" v-if="playerList.length==0">
             <div class="noPlayers">
-
-          
             <p> No players added</p>
             </div>
         </b-col>
@@ -76,94 +74,7 @@
     </b-container>
   </b-modal>
 </template>
-<style scoped>
-.closeButton {
-  background: none;
-  border: none;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-.idClass {
-  font-weight: 300;
- 
-  padding: 2px;
-  padding-left:10px;
 
-  padding-right:10px ;
-  background: rebeccapurple;
-  color: white;
-  font-size:15px ;
-  border-radius: 10px;
-}
-.formInput {
-  margin-top: 0%;
-  padding-top: 0%;
-  text-align: center;
-  border: none;
-  border-radius: 5px;
-  background: #f4f2f2;
-  border: 1px solid #f4f2f2;
-}
-
-.formInput:focus {
-  border: none;
-  box-shadow: none;
-  border: 1px solid yellowgreen;
-  border-color: black;
-}
-.submitAdd {
-  background: rebeccapurple;
-  color: white;
-  border: none;
-  padding: 2%;
-  padding-left:20px ;
-  padding-right: 20px;
-  height: 35px;
-  border-radius: 5px;
-}
-.playersComponent {
-  margin-top: 3%;
-}
-.noPlayers{
-    /* background: #f4f2f2; */
-    text-align:center;
-    margin-top:5%
-}
-.playerListClass {
-  display: flex;
-  height: 30px;
-  margin-top: 2%;
-  width: 100%;
-  position: relative;
-  justify-content: flex-start;
-  background: #f4f2f2;
-  color: black;
-  border-radius: 10px;
-  border: 1px solid #565656;
-}
-.playerName {
-  text-align: left;
-  margin-left: 20px;
-}
-.avaratarPlayer {
-  margin-top: 2%;
-  margin-left: 2%;
-  background: rebeccapurple;
-}
-.deleteButton {
-  margin-top: 2%;
-  color: red;
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-right: 2%;
-}
-.error{
-    color: red;
-    text-align: center;
-}
-</style>
 <script>
 import {
   createPlayer,
@@ -216,7 +127,6 @@ export default {
     getPlayerList() {
       console.log("inside get player list");
       var payload = {
-      
         teamId: this.selectedTeamId,
       };
       getPlayersByTeam({
@@ -244,8 +154,6 @@ export default {
     addPlayer() {
         if(this.playerList.length<=12)
         {
-
-      
       var nameCheck = this.playerNameCheck(this.playerName);
       if (nameCheck == "true") {
         var payload = {
@@ -280,3 +188,90 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .closeButton {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  .idClass {
+    font-weight: 300;
+    padding: 2px;
+    padding-left:10px;
+    padding-right:10px ;
+    background: rebeccapurple;
+    color: white;
+    font-size:15px ;
+    border-radius: 10px;
+  }
+  .formInput {
+    margin-top: 0%;
+    padding-top: 0%;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    background: #f4f2f2;
+    border: 1px solid #f4f2f2;
+  }
+  
+  .formInput:focus {
+    border: none;
+    box-shadow: none;
+    border: 1px solid yellowgreen;
+    border-color: black;
+  }
+  .submitAdd {
+    background: rebeccapurple;
+    color: white;
+    border: none;
+    padding: 2%;
+    padding-left:20px ;
+    padding-right: 20px;
+    height: 35px;
+    border-radius: 5px;
+  }
+  .playersComponent {
+    margin-top: 3%;
+  }
+  .noPlayers{
+      /* background: #f4f2f2; */
+      text-align:center;
+      margin-top:5%
+  }
+  .playerListClass {
+    display: flex;
+    height: 30px;
+    margin-top: 2%;
+    width: 100%;
+    position: relative;
+    justify-content: flex-start;
+    background: #f4f2f2;
+    color: black;
+    border-radius: 10px;
+    border: 1px solid #565656;
+  }
+  .playerName {
+    text-align: left;
+    margin-left: 20px;
+  }
+  .avaratarPlayer {
+    margin-top: 2%;
+    margin-left: 2%;
+    background: rebeccapurple;
+  }
+  .deleteButton {
+    margin-top: 2%;
+    color: red;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 2%;
+  }
+  .error{
+      color: red;
+      text-align: center;
+  }
+  </style>
