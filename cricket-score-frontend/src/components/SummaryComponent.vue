@@ -141,12 +141,13 @@
       <b><b-col style="margin-right:65px;">Player Name</b-col></b>
        <b><b-col>Select</b-col></b>
       </b-row>
-      <b-row @click="chooseBatsman(val)" v-for="(val,index) in teamA.playerList" :key=index class="spacing-modal">
+      <b-row  @click="chooseBatsman(val,(!checked))"  v-for="(val,index) in teamA.playerList" :key=index class="spacing-modal">
       <b-col>{{index+1}}</b-col>
       <b-col>{{val.playername}}</b-col>
-      <b-col><b-button size="sm" style="padding:2%;">select</b-button></b-col>
+      <b-col><input type="checkbox" style="padding:2%;" :disabled="disableSelect"></b-col>
       </b-row>
-
+      <b-row v-show="proceedBatsman"></b-row>
+      <b-row ><b-col></b-col><b-col><b-button style="font-size:13px;" size="sm" @click="disableSelect=false">Change Selection</b-button></b-col><b-col><b-button style="font-size:13px;" @click="BatsmanSelect()">Next</b-button></b-col></b-row>
   </b-container>
   </b-modal>
 </div>
@@ -161,16 +162,20 @@ export default {
     return {
         ballByBall:[],
         buttonList:[],
-        currentBatsman:null,
+        currentBatsman:[],
+        disableSelect:false,
         c:0,
+        checked:false,
         wickets:0,
         total:0,
         batsmanModal:false,
         totalUndo:0,
         Lastele:true,
         strike:1,
+        proceedBatsman:false,
         batsmanList:null,
         extras:0,
+         batsmanC:0,
         no_of_overs:0,
         wicketList:[
            {
@@ -370,7 +375,6 @@ export default {
             bowlerId:12,
             matchId:'27',
             teamId:4,
-
          }
          axios.post('http://10.30.1.46:8087/insertOver',payload).then(response=>(console.log(response)))
          oldValue;
@@ -398,12 +402,41 @@ export default {
     }
   },
   methods: {
-    chooseBatsman(val)
+    BatsmanSelect()
     {
+      if(this.currentBatsman.length==2)
+      {
+         this.additionalDialog=1;
+        this.batsmanModal=false;
+
+      }
+      else
+      {
+        this.proceedBatsman=true;
+      }
+    },
+    chooseBatsman(val,checked)
+    {
+      if(!checked)
+      {
+        this.currentBatsman.splice((this.currentBatsman.indexOf(val.playerid)),1);
+      }
+      else
+      {
+        if(this.currentBatsman.length==2)
+        {
+           this.disableSelect=true;
+        }
+       if(this.currentBatsman.length==1)
+      {
+        this.currentBatsman.push(val);
+         console.log("selected",this.currentBatsman);
+         this.disableSelect=true;
+      }
       console.log(val)
-      this.currentBatsman=val
-      this.additionalDialog=1
-      this.batsmanModal=false
+      if(this.currentBatsman.length==0){
+      this.currentBatsman.push(val);
+     }}
     },
     addScoreList(value,category){
         // console.log(value)
