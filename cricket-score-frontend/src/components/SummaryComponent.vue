@@ -81,7 +81,7 @@
        </div>
       <div v-show="additionalDialog!=3"  class="scoringCard">
          <b-container style="background:#ff9900;margin-top:1.5%;"  fluid v-show="additionalDialog==0">
-         <b-button style="border:1px solid white;back" v-b-modal.modal-center>Select batsman</b-button>
+         <b-button style="border:1px solid white;back" @click="batsmanModal=true">Select batsman</b-button>
          </b-container>
         <table class="table-style" v-show="additionalDialog==1">
           <tr>
@@ -119,22 +119,31 @@
       </div>
     </div>
     <div>
-  <b-modal id="modal-center" centered title="Select Batsman"
+  <b-modal
+   id="modal-center" 
+   v-model="batsmanModal"
+   centered title="Select Batsman"
   header-bg-variant="danger"
       header-text-variant="light"
       body-bg-variant="bodyBgVariant"
       body-text-variant="bodyTextVariant"
       hide-footer
   >
+  <template #modal-header>
+           <h5>Select Batsman </h5>
+           <button @click="batsmanModal=false" class="closeButton">
+         <b-icon-x-lg style="color:white"/>
+        </button>
+        </template>
   <b-container>
     <b-row>
       <b><b-col style="margin-right:50px;">S.No</b-col></b>
       <b><b-col style="margin-right:65px;">Player Name</b-col></b>
        <b><b-col>Select</b-col></b>
       </b-row>
-      <b-row v-for="(val,index) in 3" :key=index class="spacing-modal">
+      <b-row @click="chooseBatsman(val)" v-for="(val,index) in teamA.playerList" :key=index class="spacing-modal">
       <b-col>{{index+1}}</b-col>
-      <b-col>Dhoni</b-col>
+      <b-col>{{val.playername}}</b-col>
       <b-col><b-button size="sm" style="padding:2%;">select</b-button></b-col>
       </b-row>
 
@@ -145,19 +154,22 @@
 </template>
 
 <script>
+import {getParticularMatch} from "../Service/match.service"
 import axios from 'axios';
 export default {
   data() {
     return {
         ballByBall:[],
         buttonList:[],
-
+        currentBatsman:null,
         c:0,
         wickets:0,
         total:0,
+        batsmanModal:false,
         totalUndo:0,
         Lastele:true,
         strike:1,
+        batsmanList:null,
         extras:0,
         no_of_overs:0,
         wicketList:[
@@ -309,6 +321,8 @@ export default {
         scores:[],
         count:1,
         noOfBalls:0,
+        teamA:null,
+        teamB:null,
     };
   },
   created()
@@ -326,6 +340,26 @@ export default {
          }
          axios.post('http://10.30.1.46:8087/insertOver',payload).then(response=>(console.log(response)));
          axios.get(`http://10.30.1.46:8087/getBatsManDetails/${'27'}/${4}/${23}`).then(response=>(console.log(response)));
+  },
+  mounted()
+  {
+    console.log("inside mounted")
+      var matchId=localStorage.getItem("matchId")
+      // var userid=localStorage.getItem("userid")
+      getParticularMatch({
+          success: (response) => {
+            
+            this.teamA=response.team1
+            this.teamB=response.team2
+            
+          console.log(this.teamA,this.teamB);
+          },
+          error: (err) => {
+            console.log(err);
+          },
+          payload: matchId,
+        });
+      
   },
   watch:
   {
@@ -364,6 +398,13 @@ export default {
     }
   },
   methods: {
+    chooseBatsman(val)
+    {
+      console.log(val)
+      this.currentBatsman=val
+      this.additionalDialog=1
+      this.batsmanModal=false
+    },
     addScoreList(value,category){
         // console.log(value)
         this.additionalDialog=2
